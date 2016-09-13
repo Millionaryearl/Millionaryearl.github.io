@@ -91,9 +91,10 @@ $ hexo clean
 $ hexo d
 ```
 
-如果能看到提示 ``INFO  Deploy done: git`` 你就可以去浏览器里打开```yourname.github.io```，继续欣赏你的个人博客了。
+如果能看到提示 ``INFO  Deploy done: git`` 你就可以去浏览器里打开 ``yourname.github.io``，继续欣赏你的个人博客了。
 
 ![](https://cl.ly/441e3k3O1r2G/commic_yeah.jpg)
+
 
 ## 可能遇到的问题
 
@@ -106,6 +107,8 @@ $ pwd
 
 ### Q2: Github部署时，总是提示 “Permission Denied”
 这个是因为的Github的SSH连接授权有问题，需要确认本地机器上的ssh公钥与Github上的私钥是匹配的。如果实在无法确认的话，就直接去换套新的吧（作者就折腾了半天），[正面上我](https://help.github.com/articles/generating-an-ssh-key/) 。
+
+
 
 ## 进阶
 

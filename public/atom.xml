@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://millionaryearl.github.io/"/>
-  <updated>2016-09-13T09:03:02.000Z</updated>
+  <updated>2016-09-13T09:07:10.000Z</updated>
   <id>https://millionaryearl.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://millionaryearl.github.io/2016/09/13/blog-note-1/"/>
     <id>https://millionaryearl.github.io/2016/09/13/blog-note-1/</id>
     <published>2016-09-13T04:35:05.000Z</published>
-    <updated>2016-09-13T09:03:02.000Z</updated>
+    <updated>2016-09-13T09:07:10.000Z</updated>
     
     <content type="html"><![CDATA[<p>一直打算搞一个自己的技术博客站，比起用什么简书啊，CSDN的第三方平台，直接高冷的丢出去一个自制的博客站，简直就是装比于无形，想想就带感好吧。<strong><em>新任务获得：部署个人网站</em></strong></p>
 <a id="more"></a>
@@ -74,12 +74,34 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo d</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>如果能看到提示 <code>INFO  Deploy done: git</code> 你就可以去浏览器里打开<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">![](https://cl.ly/441e3k3O1r2G/commic_yeah.jpg)</div><div class="line"></div><div class="line">## 可能遇到的问题</div><div class="line"></div><div class="line">### Q1: 命令行总是指令错误</div><div class="line">1. 首先你的确保命令行的路径是你的工作目录（工程文件夹）的途径，在命令行里输入下列命令确认</div></pre></td></tr></table></figure></p>
-<p>$ pwd<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">2. 其次确保 `node.js` &amp; `git` &amp; `hexo` 确实安装成功了，详见上述准备环节</div><div class="line"></div><div class="line">### Q2: Github部署时，总是提示 “Permission Denied”</div><div class="line">这个是因为的Github的SSH连接授权有问题，需要确认本地机器上的ssh公钥与Github上的私钥是匹配的。如果实在无法确认的话，就直接去换套新的吧（作者就折腾了半天），[正面上我](https://help.github.com/articles/generating-an-ssh-key/) 。</div><div class="line"></div><div class="line">## 进阶</div><div class="line"></div><div class="line">有了基本的架子之后，我们想要定制一些专属功能</div><div class="line"></div><div class="line">### Advance.1 修改公网网址</div><div class="line">这个其实是属于最基本的网站信息修改，此类修改只要找到工程目录里的 `_config.yml` 文件，然后修改对应的键值就可以了，具体的键名解析如下，[正面上我](https://hexo.io/zh-cn/docs/configuration.html)</div><div class="line"></div><div class="line">### Advance.2 发布博客</div><div class="line">1. 在命令行里执行</div></pre></td></tr></table></figure></p>
-<p>$ hexo new [layout] <title><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">2. 直接在工程目录的 `/source/_posts/` 下，新建 newblog.md 文件</div><div class="line">3. 编辑内容</div><div class="line">4. 在命令行里执行</div></pre></td></tr></table></figure></title></p>
-<p>$ hexo clean<br>$ hexo d<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### Advance.3 更换主题</div><div class="line">1. 在 [正面上我](https://github.com/hexojs/hexo/wiki/Themes) 寻找喜欢的主题</div><div class="line">2. 下载下来，保存到工程目录里的 `themes` 文件夹下</div><div class="line">3. 在 `_config.yml` 文件里修改</div></pre></td></tr></table></figure></p>
-<p> Extensions</p>
-<h2 id="Plugins-http-hexo-io-plugins"><a href="#Plugins-http-hexo-io-plugins" class="headerlink" title="Plugins: http://hexo.io/plugins/"></a>Plugins: <a href="http://hexo.io/plugins/" target="_blank" rel="external">http://hexo.io/plugins/</a></h2><h2 id="Themes-http-hexo-io-themes"><a href="#Themes-http-hexo-io-themes" class="headerlink" title="Themes: http://hexo.io/themes/"></a>Themes: <a href="http://hexo.io/themes/" target="_blank" rel="external">http://hexo.io/themes/</a></h2><p>theme: landscape //themes文件夹中对应文件夹的名称<br>```</p>
+<p>如果能看到提示 <code>INFO  Deploy done: git</code> 你就可以去浏览器里打开 <code>yourname.github.io</code>，继续欣赏你的个人博客了。</p>
+<p><img src="https://cl.ly/441e3k3O1r2G/commic_yeah.jpg" alt=""></p>
+<h2 id="可能遇到的问题"><a href="#可能遇到的问题" class="headerlink" title="可能遇到的问题"></a>可能遇到的问题</h2><h3 id="Q1-命令行总是指令错误"><a href="#Q1-命令行总是指令错误" class="headerlink" title="Q1: 命令行总是指令错误"></a>Q1: 命令行总是指令错误</h3><ol>
+<li><p>首先你的确保命令行的路径是你的工作目录（工程文件夹）的途径，在命令行里输入下列命令确认</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pwd</div></pre></td></tr></table></figure>
+</li>
+<li><p>其次确保 <code>node.js</code> &amp; <code>git</code> &amp; <code>hexo</code> 确实安装成功了，详见上述准备环节</p>
+</li>
+</ol>
+<h3 id="Q2-Github部署时，总是提示-“Permission-Denied”"><a href="#Q2-Github部署时，总是提示-“Permission-Denied”" class="headerlink" title="Q2: Github部署时，总是提示 “Permission Denied”"></a>Q2: Github部署时，总是提示 “Permission Denied”</h3><p>这个是因为的Github的SSH连接授权有问题，需要确认本地机器上的ssh公钥与Github上的私钥是匹配的。如果实在无法确认的话，就直接去换套新的吧（作者就折腾了半天），<a href="https://help.github.com/articles/generating-an-ssh-key/" target="_blank" rel="external">正面上我</a> 。</p>
+<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><p>有了基本的架子之后，我们想要定制一些专属功能</p>
+<h3 id="Advance-1-修改公网网址"><a href="#Advance-1-修改公网网址" class="headerlink" title="Advance.1 修改公网网址"></a>Advance.1 修改公网网址</h3><p>这个其实是属于最基本的网站信息修改，此类修改只要找到工程目录里的 <code>_config.yml</code> 文件，然后修改对应的键值就可以了，具体的键名解析如下，<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="external">正面上我</a></p>
+<h3 id="Advance-2-发布博客"><a href="#Advance-2-发布博客" class="headerlink" title="Advance.2 发布博客"></a>Advance.2 发布博客</h3><ol>
+<li><p>在命令行里执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new [layout] &lt;title&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>直接在工程目录的 <code>/source/_posts/</code> 下，新建 newblog.md 文件</p>
+</li>
+<li>编辑内容</li>
+<li>在命令行里执行<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo d</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Advance-3-更换主题"><a href="#Advance-3-更换主题" class="headerlink" title="Advance.3 更换主题"></a>Advance.3 更换主题</h3><ol>
+<li>在 <a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">正面上我</a> 寻找喜欢的主题</li>
+<li>下载下来，保存到工程目录里的 <code>themes</code> 文件夹下</li>
+<li>在 <code>_config.yml</code> 文件里修改<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> Extensions</div><div class="line">## Plugins: http://hexo.io/plugins/</div><div class="line">## Themes: http://hexo.io/themes/</div><div class="line">theme: landscape //themes文件夹中对应文件夹的名称</div></pre></td></tr></table></figure>
+</li>
+</ol>
 <h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2><p><strong>Hexo</strong> 总体上来说还算是个挺不错的框架的，能玩的东西很多，插件，主题等等等等，想要学习更多的可以去 <a href="https://hexo.io/zh-cn/" target="_blank" rel="external">Hexo官网</a>看看。</p>
 <p>完结，撒花，鼓掌～～～</p>
 ]]></content>
