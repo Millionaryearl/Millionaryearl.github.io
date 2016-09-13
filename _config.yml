@@ -3,12 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Chen's Blog
+title: Chen's Alchemy
 subtitle: iOS Notes
 description: Hi, I'm Chen, an iOS Engineer from China
 author: Chen Wei
-language: EN
-timezone: CN
+language: zh-Hans
+timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'

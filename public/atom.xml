@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Chen&#39;s Blog</title>
+  <title>Chen&#39;s Alchemy</title>
   <subtitle>iOS Notes</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://millionaryearl.github.io/"/>
-  <updated>2016-09-06T09:13:07.000Z</updated>
+  <updated>2016-09-13T09:03:02.000Z</updated>
   <id>https://millionaryearl.github.io/</id>
   
   <author>
@@ -16,11 +16,91 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Blog Notes -使用 Hexo &amp; Github 建立个人博客站</title>
+    <link href="https://millionaryearl.github.io/2016/09/13/blog-note-1/"/>
+    <id>https://millionaryearl.github.io/2016/09/13/blog-note-1/</id>
+    <published>2016-09-13T04:35:05.000Z</published>
+    <updated>2016-09-13T09:03:02.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>一直打算搞一个自己的技术博客站，比起用什么简书啊，CSDN的第三方平台，直接高冷的丢出去一个自制的博客站，简直就是装比于无形，想想就带感好吧。<strong><em>新任务获得：部署个人网站</em></strong></p>
+<a id="more"></a>
+<p>嗯常规套路先看炼成书, <code>通用合成公式 :－ 公网域名 ＋ 服务器 ＋ 网站代码 ＝ 个人网站</code>。呃，公网域名么 <a href="https://www.godaddy.com/" target="_blank" rel="external">狗爹</a> 上或许能找到便宜的。服务器，呃，<a href="https://aws.amazon.com" target="_blank" rel="external">AWS</a>好像有点贵，<a href="告www.aliyun.com">aliyun</a>凑合吧。网站代码，呃，不就是 <code>H5+CSS+JS/AJAX</code> 么，小意思。。。。。。个屁。哥是写Swift的，自己去搞这些web相关的，要搞死哥啊。再翻翻炼成书: <code>黑暗合成公式 :- hexo（网站代码） + github（公共域名 &amp; 服务器） = 个人网站</code> </p>
+<p><img src="https://cl.ly/022C2w20262o/commic_wow.jpg" alt=""></p>
+<p>就你了，任务更新：<strong><em> 使用 <a href="https://hexo.io/docs/" target="_blank" rel="external">Hexo</a> 和 <a href="https://github.com" target="_blank" rel="external">Github</a> 制成个人博客。 </em></strong></p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="Step-1-开发环境"><a href="#Step-1-开发环境" class="headerlink" title="Step.1 开发环境"></a>Step.1 开发环境</h3><ol>
+<li><strong>Node.js</strong>     <a href="https://nodejs.org/en/download/package-manager/#osx" target="_blank" rel="external">安装指南</a></li>
+<li><strong>Git</strong>         <a href="https://git-scm.com/book/zh/v1/起步-安装-Git" target="_blank" rel="external">安装指南</a></li>
+<li><p>运行如下命令不报错即配置成功。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm -v</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git --version</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Step-2-GitHub"><a href="#Step-2-GitHub" class="headerlink" title="Step.2 GitHub"></a>Step.2 GitHub</h3><ol>
+<li>新建一个代码仓，命名为<code>yourname.github.io</code></li>
+<li><p>开启 <strong>gh-pages</strong> 功能</p>
+<ul>
+<li>开启 Reposity <strong>Setting</strong> 页面如下</li>
+<li>点击 <strong>Automatic page generator</strong></li>
+</ul>
+<p><img src="https://cl.ly/240P2i1D0b3j/hexo_1.png" alt=""></p>
+</li>
+<li><p>能够正常访问网址: <code>yourname.github.io</code> ，即配置成功。<strong><em>这个地址将成为你的博客网址（可以修改）</em></strong><br><img src="https://cl.ly/2L1R2X0e2j0U/comic_brilliant.jpg" alt=""></p>
+</li>
+</ol>
+<h3 id="Step-3-Hexo"><a href="#Step-3-Hexo" class="headerlink" title="Step.3 Hexo"></a>Step.3 Hexo</h3><ol>
+<li>新建一个工作目录，打开命令行并切换到新建的工作目录途径</li>
+<li>安装 <strong>Hexo</strong> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo-cli</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h2 id="建站"><a href="#建站" class="headerlink" title="建站"></a>建站</h2><h3 id="Step-1-新建一个网站"><a href="#Step-1-新建一个网站" class="headerlink" title="Step.1 新建一个网站"></a>Step.1 新建一个网站</h3><ol>
+<li>在命令行里执行 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo init &lt;folder&gt;</div><div class="line">$ cd &lt;folder&gt;</div><div class="line">$ npm install</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Step-2-本地测试"><a href="#Step-2-本地测试" class="headerlink" title="Step.2 本地测试"></a>Step.2 本地测试</h3><ol>
+<li>在命令行里执行 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo g</div><div class="line">$ hexo s</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>如果能看到提示：<code>INFO  Hexo is running at http://0.0.0.0:4000/. Press Ctrl+C to stop.</code>你就可以去浏览器里打开<code>http://localhost:4000/</code>，欣赏你的个人博客了</p>
+<p><img src="https://cl.ly/1o0m2K121V18/hexo_2.png" alt=""></p>
+<h3 id="Step-3-Github部署"><a href="#Step-3-Github部署" class="headerlink" title="Step.3 Github部署"></a>Step.3 Github部署</h3><ol>
+<li><p>需要为自己配置身份信息，打开命令行，执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name &quot;yourname&quot;</div><div class="line">git config --global user.email &quot;youremail&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>去工程目录里找到 <code>_config.yml</code> 文件，修改下列属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: git@github.com:yourname/yourname.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
+</li>
+<li><p>在命令行里执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo d</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>如果能看到提示 <code>INFO  Deploy done: git</code> 你就可以去浏览器里打开<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">![](https://cl.ly/441e3k3O1r2G/commic_yeah.jpg)</div><div class="line"></div><div class="line">## 可能遇到的问题</div><div class="line"></div><div class="line">### Q1: 命令行总是指令错误</div><div class="line">1. 首先你的确保命令行的路径是你的工作目录（工程文件夹）的途径，在命令行里输入下列命令确认</div></pre></td></tr></table></figure></p>
+<p>$ pwd<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">2. 其次确保 `node.js` &amp; `git` &amp; `hexo` 确实安装成功了，详见上述准备环节</div><div class="line"></div><div class="line">### Q2: Github部署时，总是提示 “Permission Denied”</div><div class="line">这个是因为的Github的SSH连接授权有问题，需要确认本地机器上的ssh公钥与Github上的私钥是匹配的。如果实在无法确认的话，就直接去换套新的吧（作者就折腾了半天），[正面上我](https://help.github.com/articles/generating-an-ssh-key/) 。</div><div class="line"></div><div class="line">## 进阶</div><div class="line"></div><div class="line">有了基本的架子之后，我们想要定制一些专属功能</div><div class="line"></div><div class="line">### Advance.1 修改公网网址</div><div class="line">这个其实是属于最基本的网站信息修改，此类修改只要找到工程目录里的 `_config.yml` 文件，然后修改对应的键值就可以了，具体的键名解析如下，[正面上我](https://hexo.io/zh-cn/docs/configuration.html)</div><div class="line"></div><div class="line">### Advance.2 发布博客</div><div class="line">1. 在命令行里执行</div></pre></td></tr></table></figure></p>
+<p>$ hexo new [layout] <title><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">2. 直接在工程目录的 `/source/_posts/` 下，新建 newblog.md 文件</div><div class="line">3. 编辑内容</div><div class="line">4. 在命令行里执行</div></pre></td></tr></table></figure></title></p>
+<p>$ hexo clean<br>$ hexo d<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### Advance.3 更换主题</div><div class="line">1. 在 [正面上我](https://github.com/hexojs/hexo/wiki/Themes) 寻找喜欢的主题</div><div class="line">2. 下载下来，保存到工程目录里的 `themes` 文件夹下</div><div class="line">3. 在 `_config.yml` 文件里修改</div></pre></td></tr></table></figure></p>
+<p> Extensions</p>
+<h2 id="Plugins-http-hexo-io-plugins"><a href="#Plugins-http-hexo-io-plugins" class="headerlink" title="Plugins: http://hexo.io/plugins/"></a>Plugins: <a href="http://hexo.io/plugins/" target="_blank" rel="external">http://hexo.io/plugins/</a></h2><h2 id="Themes-http-hexo-io-themes"><a href="#Themes-http-hexo-io-themes" class="headerlink" title="Themes: http://hexo.io/themes/"></a>Themes: <a href="http://hexo.io/themes/" target="_blank" rel="external">http://hexo.io/themes/</a></h2><p>theme: landscape //themes文件夹中对应文件夹的名称<br>```</p>
+<h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2><p><strong>Hexo</strong> 总体上来说还算是个挺不错的框架的，能玩的东西很多，插件，主题等等等等，想要学习更多的可以去 <a href="https://hexo.io/zh-cn/" target="_blank" rel="external">Hexo官网</a>看看。</p>
+<p>完结，撒花，鼓掌～～～</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一直打算搞一个自己的技术博客站，比起用什么简书啊，CSDN的第三方平台，直接高冷的丢出去一个自制的博客站，简直就是装比于无形，想想就带感好吧。&lt;strong&gt;&lt;em&gt;新任务获得：部署个人网站&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Blog" scheme="https://millionaryearl.github.io/tags/Blog/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Hello World</title>
-    <link href="https://millionaryearl.github.io/2016/09/06/hello-world/"/>
-    <id>https://millionaryearl.github.io/2016/09/06/hello-world/</id>
-    <published>2016-09-06T07:58:14.000Z</published>
-    <updated>2016-09-06T09:13:07.000Z</updated>
+    <link href="https://millionaryearl.github.io/2016/09/07/hello-world/"/>
+    <id>https://millionaryearl.github.io/2016/09/07/hello-world/</id>
+    <published>2016-09-07T02:20:48.000Z</published>
+    <updated>2016-09-07T02:24:32.000Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <a id="more"></a>
@@ -40,6 +120,61 @@
     
     </summary>
     
+    
+      <category term="Hexo" scheme="https://millionaryearl.github.io/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Swift Notes - 阿里云推送SDK</title>
+    <link href="https://millionaryearl.github.io/2016/09/07/swift-note-1/"/>
+    <id>https://millionaryearl.github.io/2016/09/07/swift-note-1/</id>
+    <published>2016-09-07T02:15:50.000Z</published>
+    <updated>2016-09-13T04:16:03.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>新项目里的消息推送功能，公司技术部开会讨论后决定让 极光，百度，aws都歇菜，取而代之的是尝试 使用阿里云推送SDK。所以今天就简单记录下调试过程。新任务获得：使用阿里云推送SDK实现消息推送功能～</p>
+<a id="more"></a>
+<p>嗯常规套路先看官方文档 <a href="https://help.aliyun.com/document_detail/30072.html?spm=5176.doc30071.6.156.YoX0P8" target="_blank" rel="external">正面上我</a> 。 嗯，很详细，很耐斯，很桥豆麻袋？库文件是OC写的？？？</p>
+<p><img src="https://cl.ly/hRAS/ExcuseMe.jpeg" alt=""></p>
+<p>坑爹啊，哥的项目都是swift写的啊。呃。。。。。。。。。好吧，也许加一个桥接就可以了。任务变更：桥接阿里云推送SDK（OC版）到Swift工程里，而后实现消息推送功能～</p>
+<p><img src="https://cl.ly/hREs/challenge-accepted-meme.jpg" alt=""></p>
+<h2 id="Ready-to-work"><a href="#Ready-to-work" class="headerlink" title="Ready to work"></a>Ready to work</h2><p>所谓工欲善其事，必先利其器。而且消息推送功能本身就是配置打过逻辑代码的功能，所以我们先要把准备工作做好。</p>
+<hr>
+<h3 id="Step-1-准备certificate文件"><a href="#Step-1-准备certificate文件" class="headerlink" title="Step.1 - 准备certificate文件"></a>Step.1 - 准备certificate文件</h3><p>由于消息推送功能的实现，涉及到Apple的官方资源（感兴趣的同志们可以自行去谷歌APNS），所以需要准备特别的证书文件：<strong><em>development certificate x1</em></strong>， <strong><em>distribution certificate x1</em></strong>。然后这两个文件具体怎么获得呢，请 <a href="https://help.aliyun.com/document_detail/30071.html?spm=5176.doc30072.6.155.ItR8Ib" target="_blank" rel="external">正面上我</a> 。</p>
+<h3 id="Step-2-获得AppKey-AppSecret"><a href="#Step-2-获得AppKey-AppSecret" class="headerlink" title="Step.2 - 获得AppKey, AppSecret"></a>Step.2 - 获得AppKey, AppSecret</h3><p>这个appkey 和appsecret 是做啥的呢，嗯简单说就是这两个字串是阿里云用来标记你的app的，万一推错了就不好嘛，稍后我们会用点。那么问题又来了这两个字串那里搞呢？</p>
+<p>支线任务获得：寻找NPC -公司的推送服务后台开发人员，交付 <strong><em>development certificate x1</em></strong>， <strong><em>distribution certificate x1</em></strong>后，获得 <strong><em>AppKey x1</em></strong>, <strong><em>AppSecret x1</em></strong>.</p>
+<h3 id="Step-3-配置App"><a href="#Step-3-配置App" class="headerlink" title="Step.3 - 配置App"></a>Step.3 - 配置App</h3><p>配置App这个就简单了，打开你的项目代码。先把开发团队调到你们的公司</p>
+<p><img src="https://cl.ly/hQyC/aliyun_1.jpeg" alt=""></p>
+<p>然后打开 Post Notifications 功能</p>
+<p><img src="https://cl.ly/hRCF/aliyun_2.png" alt=""></p>
+<h3 id="Step-4-引入阿里云SDK"><a href="#Step-4-引入阿里云SDK" class="headerlink" title="Step.4 - 引入阿里云SDK"></a>Step.4 - 引入阿里云SDK</h3><p>下载好压缩包打开，获得四个库文件，然后全部拖到你的项目工程里去。再然后么把 build settings 里的 Enable Bitcode 给关了。最后再转到 Build Phases 里面的 Link Binary With libraries， 加入四个依赖的系统库: libz.tbd，libresolv.tbd，CoreTelephony.framework，SystemConfiguration.framework 。</p>
+<hr>
+<p>好啦，到此基本上所有的准备工作都做好了。接下来我们就可以开始写代码了。P.S. <del>其实上面的都可以在阿里云文档里看到，哥只是拿来凑字的</del>～～</p>
+<h2 id="Core-Work"><a href="#Core-Work" class="headerlink" title="Core Work"></a>Core Work</h2><h3 id="Step-1-桥接"><a href="#Step-1-桥接" class="headerlink" title="Step.1 - 桥接"></a>Step.1 - 桥接</h3><p>先建立一个 Header File，命名为 YourProjectName-Bridging-Header.h 。 </p>
+<p><img src="https://cl.ly/hRGV/aliyun_3.jpeg" alt=""></p>
+<p>然后呢去到 Build Setting里，找到 Objective-C Bridging Header 填入刚才的文件名</p>
+<p><img src="https://cl.ly/hRAR/aliyun_4.jpeg" alt=""></p>
+<p>最后在刚才的桥接文件里，引入阿里云推送的库<code>#import &lt;CloudPushSDK/CloudPushSDK.h&gt;</code>, 这样就可以用SDK里的方法了。</p>
+<h3 id="Step-2-配置推送"><a href="#Step-2-配置推送" class="headerlink" title="Step.2 - 配置推送"></a>Step.2 - 配置推送</h3><p>先在APP启动时调用配置方法。</p>
+<p><img src="https://cl.ly/hRN5/aliyun_5.png" alt=""></p>
+<p>配置推送注册方法</p>
+<p><img src="https://cl.ly/hR4P/aliyun_6.png" alt=""></p>
+<p>推送处理方法</p>
+<p><img src="https://cl.ly/hR86/aliyun_7.png" alt=""></p>
+<p>最后运行程序，看到如下结果就可以去交任务啦。</p>
+<p><img src="https://cl.ly/hQrt/aliyun_8.png" alt=""></p>
+<p>完结，鼓掌，撒花～～</p>
+<p><img src="https://cl.ly/hQsX/PrettyGood.png" alt=""></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;新项目里的消息推送功能，公司技术部开会讨论后决定让 极光，百度，aws都歇菜，取而代之的是尝试 使用阿里云推送SDK。所以今天就简单记录下调试过程。新任务获得：使用阿里云推送SDK实现消息推送功能～&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Swift" scheme="https://millionaryearl.github.io/tags/Swift/"/>
     
   </entry>
   
