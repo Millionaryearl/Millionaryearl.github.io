@@ -66,6 +66,9 @@ pagination_dir: page
 plugins: hexo-generator-feed
 theme: oishi
 
+# Disqus
+disqus_shortname: millionaryearl
+
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:

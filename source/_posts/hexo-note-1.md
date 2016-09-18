@@ -1,6 +1,6 @@
 ---
-title: Blog Notes -使用 Hexo & Github 建立个人博客站
-tags: Blog
+title: Hexo Notes - 建站并部署到Github
+tags: Hexo
 ---
 
 一直打算搞一个自己的技术博客站，比起用什么简书啊，CSDN的第三方平台，直接高冷的丢出去一个自制的博客站，简直就是装比于无形，想想就带感好吧。***新任务获得：部署个人网站***
@@ -140,6 +140,20 @@ $ hexo d
 ## Themes: http://hexo.io/themes/
 theme: landscape //themes文件夹中对应文件夹的名称
 ```
+
+### Advance.4 添加评论
+有的theme可能带有评论，而有的没有，比如作者用的这个`Oishi`。可行的插件有 [***DISQUS***](https://disqus.com)  和 [***多说***](http://duoshuo.com), 这里我们选用 **DISQUS**
+
+1. 在**DISQUS**上注册账号
+2. 在**DISQUS**上注册一个网站,得到网站的shortname
+3. 在工程目录里找到`_config.yml`，加入如下代码
+```
+# Disqus
+disqus_shortname: shortname
+
+```
+4. 更多样式设置或者相关疑问，[正面上我](http://morris821028.github.io/2014/04/12/web/hexo-comment/)
+
 
 ## 待续
 **Hexo** 总体上来说还算是个挺不错的框架的，能玩的东西很多，插件，主题等等等等，想要学习更多的可以去 [Hexo官网](https://hexo.io/zh-cn/)看看。

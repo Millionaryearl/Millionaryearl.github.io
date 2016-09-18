@@ -66,7 +66,8 @@ tags: Swift
 ### Step.2 - 配置推送
 先在APP启动时调用配置方法。
 
-![](https://cl.ly/hRN5/aliyun_5.png)
+![](https://cl.ly/hRN5/aliyun_5.png)            
+```
 
 配置推送注册方法
 
