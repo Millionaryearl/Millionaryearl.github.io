@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://millionaryearl.github.io/"/>
-  <updated>2016-09-14T03:57:37.000Z</updated>
+  <updated>2016-09-19T08:50:07.000Z</updated>
   <id>https://millionaryearl.github.io/</id>
   
   <author>
@@ -16,13 +16,224 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hexo Notes - 建站并部署到Github</title>
-    <link href="https://millionaryearl.github.io/2016/09/13/hexo-note-1/"/>
-    <id>https://millionaryearl.github.io/2016/09/13/hexo-note-1/</id>
-    <published>2016-09-13T04:35:05.000Z</published>
-    <updated>2016-09-14T03:57:37.000Z</updated>
+    <title>Build Your Own Blog  - 个性化设置(三)</title>
+    <link href="https://millionaryearl.github.io/2016/09/19/hexo-Blog-SEO/"/>
+    <id>https://millionaryearl.github.io/2016/09/19/hexo-Blog-SEO/</id>
+    <published>2016-09-19T08:41:01.000Z</published>
+    <updated>2016-09-19T08:50:07.000Z</updated>
     
-    <content type="html"><![CDATA[<p>一直打算搞一个自己的技术博客站，比起用什么简书啊，CSDN的第三方平台，直接高冷的丢出去一个自制的博客站，简直就是装比于无形，想想就带感好吧。<strong><em>新任务获得：部署个人网站</em></strong></p>
+    <content type="html"><![CDATA[<p>最近有小伙伴反映，啊那个兄台啊，你这个博客还算阔以，就是访问起来也忒麻烦了。百度和狗哥上找不捉，这个网址这么难记，小伙伴们不能日日瞻仰，很是为难呀。<br><strong><em>新任务获得：配置SEO</em></strong></p>
+<a id="more"></a>
+<h2 id="修改公网网址"><a href="#修改公网网址" class="headerlink" title="修改公网网址"></a>修改公网网址</h2><p>这个其实是属于最基本的网站信息修改，此类修改只要找到工程目录里的 <code>_config.yml</code> 文件，然后修改对应的键值就可以了，具体的键名解析如下，<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="external">正面上我</a></p>
+<hr>
+<p>This artical is avaliable under <a href="http://wtfpl2.com" target="_blank" rel="external">WTFPL-V2</a>. Generally, everyone is permitted to copy and do what the fuck you want to.<br>P.S. Even so said, your kindly declaration that inspired from this site - <a href="https://millionaryearl.github.io">Chen’s Alchemy</a> would be appreciated</p>
+<p>本文链接：<a href="https://millionaryearl.github.io/2016/09/19/hexo-Blog-SEO/">https://millionaryearl.github.io/2016/09/19/hexo-Blog-SEO/</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近有小伙伴反映，啊那个兄台啊，你这个博客还算阔以，就是访问起来也忒麻烦了。百度和狗哥上找不捉，这个网址这么难记，小伙伴们不能日日瞻仰，很是为难呀。&lt;br&gt;&lt;strong&gt;&lt;em&gt;新任务获得：配置SEO&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Blog" scheme="https://millionaryearl.github.io/categories/Blog/"/>
+    
+    
+      <category term="Hexo" scheme="https://millionaryearl.github.io/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Build Your Own Blog  - 个性化设置(二)</title>
+    <link href="https://millionaryearl.github.io/2016/09/19/hexo-Blog-method/"/>
+    <id>https://millionaryearl.github.io/2016/09/19/hexo-Blog-method/</id>
+    <published>2016-09-19T02:51:30.000Z</published>
+    <updated>2016-09-20T02:45:26.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>主题相关的界面工作完成之后，这个博客总算是有点样子。但是我看来看去，赶脚似乎大概眉笔好像有那么一点点简陋的哇。所以这一期我们打算看看有哪些附属功能可以加到博客上。<br><strong><em>新任务获得：美化个人网站-附属功能</em></strong> </p>
+<a id="more"></a>
+<h2 id="功能组件"><a href="#功能组件" class="headerlink" title="功能组件"></a>功能组件</h2><h3 id="评论模块"><a href="#评论模块" class="headerlink" title="评论模块"></a>评论模块</h3><p>有的theme可能带有评论，而有的没有。可选的插件有 <a href="https://disqus.com" target="_blank" rel="external"><strong><em>DISQUS</em></strong></a> （更简洁偏国外） 和 <a href="http://duoshuo.com" target="_blank" rel="external"><strong><em>多说</em></strong></a>（更社交偏国内）, 这里我们选用 <strong>DISQUS</strong></p>
+<ol>
+<li>在<strong>DISQUS</strong>上注册账号</li>
+<li>在<strong>DISQUS</strong>上注册一个网站,得到网站的shortname</li>
+<li>在工程目录里找到<code>_config.yml</code>，加入如下代码</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># Disqus</div><div class="line">disqus_shortname: shortname</div></pre></td></tr></table></figure>
+<ol>
+<li>更多评论样式设置或者相关疑问，<a href="http://morris821028.github.io/2014/04/12/web/hexo-comment/" target="_blank" rel="external">正面上我</a></li>
+</ol>
+<h3 id="打赏模块"><a href="#打赏模块" class="headerlink" title="打赏模块"></a>打赏模块</h3><p>这个虽然说是正常人都不太会用的废物功能，但万一呢，是吧。万一又个慧眼独具，目光深邃的好汉看出来本人骨骼精奇，死乞白赖的非要给我打上呢是吧，所以本着用户至上的原则，咱还是加上这个模块吧</p>
+<p>首先去看下<code>/themes/your_theme/layout/macro</code>途径下有没有 <code>reward.swig</code>文件，没有的话就新建，内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&#123;% if theme.alipay or theme.wechatpay %&#125;</div><div class="line">  &lt;div style=&quot;padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;&quot;&gt;</div><div class="line">    &lt;div&gt;&#123;&#123; theme.reward_comment &#125;&#125;&lt;/div&gt;</div><div class="line">    &lt;button id=&quot;rewardButton&quot; disable=&quot;enable&quot; onclick=&quot;var qr = document.getElementById(&apos;QR&apos;); if (qr.style.display === &apos;none&apos;) &#123;qr.style.display=&apos;block&apos;;&#125; else &#123;qr.style.display=&apos;none&apos;&#125;&quot;&gt;</div><div class="line">      &lt;span&gt;赏&lt;/span&gt;</div><div class="line">    &lt;/button&gt;</div><div class="line">    &lt;div id=&quot;QR&quot; style=&quot;display: none;&quot;&gt;</div><div class="line">      &#123;% if theme.wechatpay %&#125;</div><div class="line">        &lt;div id=&quot;wechat&quot; style=&quot;display: inline-block&quot;&gt;</div><div class="line">          &lt;img id=&quot;wechat_qr&quot; src=&quot;&#123;&#123; theme.wechatpay &#125;&#125;&quot; alt=&quot;&#123;&#123; theme.author &#125;&#125; WeChat Pay&quot;/&gt;</div><div class="line">          &lt;p&gt;微信打赏&lt;/p&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">      &#123;% endif %&#125;</div><div class="line">      &#123;% if theme.alipay %&#125;</div><div class="line">        &lt;div id=&quot;alipay&quot; style=&quot;display: inline-block&quot;&gt;</div><div class="line">          &lt;img id=&quot;alipay_qr&quot; src=&quot;&#123;&#123; theme.alipay &#125;&#125;&quot; alt=&quot;&#123;&#123; theme.author &#125;&#125; Alipay&quot;/&gt;</div><div class="line">          &lt;p&gt;支付宝打赏&lt;/p&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">      &#123;% endif %&#125;</div><div class="line">    &lt;/div&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&#123;% endif %&#125;</div></pre></td></tr></table></figure>
+<p>然后看下同路径下的<code>post.swig</code>文件, 确保在<code>&lt;footer class=&quot;post-footer&quot;&gt;</code>之前有这么一段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;% if not is_index %&#125;</div><div class="line">     &#123;% include &apos;reward.swig&apos; %&#125;</div><div class="line">   &#123;% endif %&#125;</div><div class="line"> &lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>再后去<strong>站点配置文件</strong><code>(工程主目录下的_config.yml)</code>，设置如下键值对</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># Donate 文章末尾显示打赏按钮</div><div class="line">reward_comment: 我知道是不会有人点的，但万一有人想不开呢？</div><div class="line">wechatpay: https://cl.ly/3W3I3O3t1622/wexinpay.JPG</div><div class="line">alipay: https://cl.ly/3t1O403j2P1F/alipay.JPG</div></pre></td></tr></table></figure>
+<p>最后记得把那两个二维码的图片地址换成你自己的，不然就算你骨骼精奇，人也是把钱汇给我了。。。当然你要真倔强不换，我也是很欢迎滴。<br><img src="https://cl.ly/0a0n3y3t3136/comic_spiderman.jpg" alt=""></p>
+<h3 id="RSS开启"><a href="#RSS开启" class="headerlink" title="RSS开启"></a>RSS开启</h3><p>这RSS开启了之后么，就可以方便别人订阅你的博客了，要装上也挺简单。先去命令行里主工程目录下运行</p>
+<pre><code>$ npm install hexo-generator-feed --save
+</code></pre><p>然后去<strong>站点配置文件</strong><code>(工程主目录下的_config.yml)</code>里配置一下. P.S.似乎<code>Next</code>主题可以跳过这步，因为在<strong>主题配置文件</strong><code>(/themes/next/_config.yml)</code>里，已经设好了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">feed:</div><div class="line">    type: atom</div><div class="line">    path: atom.xml</div><div class="line">    limit: 20</div></pre></td></tr></table></figure></p>
+<h3 id="社交连接"><a href="#社交连接" class="headerlink" title="社交连接"></a>社交连接</h3><p>去到<strong>主题配置文件</strong><code>(/themes/next/_config.yml)</code>里，先找到<code>social</code>键，按如下格式添加键值对</p>
+<pre><code>social_name: link_address
+e.g.
+GitHub: https://github.com/Millionaryearl
+Weibo: http://weibo.com/2334525960/profile?topnav=1&amp;wvr=6&amp;is_all=1
+Personal: http://dukewei.typify.io
+</code></pre><p>然后去给对应的连接加上图标，这个图标和上篇里菜单项目图标一样，也是由 <a href="http://fontawesome.io" target="_blank" rel="external">Font Awesome</a> 提供的</p>
+<pre><code>social_name: icon_name
+(e.g.)
+GitHub: github
+Twitter: twitter
+Weibo: weibo
+Personal: home
+</code></pre><h3 id="结尾样式-版权说明"><a href="#结尾样式-版权说明" class="headerlink" title="结尾样式-版权说明"></a>结尾样式-版权说明</h3><p>在主工程目录下，新建一个名为<code>scripts</code>的文件夹，在其中，新建一个AddTail.js脚本文件，内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">// Filename: AddTail.js</div><div class="line"></div><div class="line">// Add a tail to every post from tail.md</div><div class="line">// Great for adding copyright info</div><div class="line"></div><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line"></div><div class="line">hexo.extend.filter.register(&apos;before_post_render&apos;, function(data)&#123;</div><div class="line">	if(data.copyright == false) return data;</div><div class="line">	</div><div class="line">	// Add seperate line</div><div class="line">	data.content += &apos;\n___\n&apos;;</div><div class="line">	</div><div class="line">	// Try to read tail.md</div><div class="line">	try &#123;</div><div class="line">		var file_content = fs.readFileSync(&apos;tail.md&apos;);</div><div class="line">		if(file_content &amp;&amp; data.content.length &gt; 50) </div><div class="line">		&#123;</div><div class="line">			data.content += file_content;</div><div class="line">		&#125;</div><div class="line">	&#125; catch (err) &#123;</div><div class="line">		if (err.code !== &apos;ENOENT&apos;) throw err;</div><div class="line">		</div><div class="line">		// No process for ENOENT error</div><div class="line">	&#125;</div><div class="line"></div><div class="line">  	// 添加具体文章链接, 不需要去掉即可</div><div class="line">	var permalink = &apos;\n本文链接：&apos; + data.permalink;</div><div class="line">	data.content += permalink;</div><div class="line">  </div><div class="line">	return data;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>然后在工程主目录下新建一个<code>tail.md</code>文件，其中写上你的博客结尾内容，比如作者就写了下版权的破事儿</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>感觉用 <strong><em>NEXT</em></strong> 的博主特别多，所以咱要稍微搞些不一样的东西，比如换换背景什么的。<br>首先去<code>/themes/next/source/js/src</code>路径下新建你的样式文件，例如<code>particle.js</code></p>
+<pre><code>!function(){function n(n,e,t){return n.getAttribute(e)||t}function e(n){return document.getElementsByTagName(n)}function t(){var t=e(&quot;script&quot;),o=t.length,i=t[o-1];return{l:o,z:n(i,&quot;zIndex&quot;,-1),o:n(i,&quot;opacity&quot;,.5),c:n(i,&quot;color&quot;,&quot;0,0,0&quot;),n:n(i,&quot;count&quot;,99)}}function o(){c=u.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,a=u.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight}function i(){l.clearRect(0,0,c,a);var n,e,t,o,u,d,x=[w].concat(y);y.forEach(function(i){for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x&gt;c||i.x&lt;0?-1:1,i.ya*=i.y&gt;a||i.y&lt;0?-1:1,l.fillRect(i.x-.5,i.y-.5,1,1),e=0;e&lt;x.length;e++)n=x[e],i!==n&amp;&amp;null!==n.x&amp;&amp;null!==n.y&amp;&amp;(o=i.x-n.x,u=i.y-n.y,d=o*o+u*u,d&lt;n.max&amp;&amp;(n===w&amp;&amp;d&gt;=n.max/2&amp;&amp;(i.x-=.03*o,i.y-=.03*u),t=(n.max-d)/n.max,l.beginPath(),l.lineWidth=t/2,l.strokeStyle=&quot;rgba(&quot;+m.c+&quot;,&quot;+(t+.2)+&quot;)&quot;,l.moveTo(i.x,i.y),l.lineTo(n.x,n.y),l.stroke()));x.splice(x.indexOf(i),1)}),r(i)}var c,a,u=document.createElement(&quot;canvas&quot;),m=t(),d=&quot;c_n&quot;+m.l,l=u.getContext(&quot;2d&quot;),r=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||function(n){window.setTimeout(n,1e3/45)},x=Math.random,w={x:null,y:null,max:2e4};u.id=d,u.style.cssText=&quot;position:fixed;top:0;left:0;z-index:&quot;+m.z+&quot;;opacity:&quot;+m.o,e(&quot;body&quot;)[0].appendChild(u),o(),window.onresize=o,window.onmousemove=function(n){n=n||window.event,w.x=n.clientX,w.y=n.clientY},window.onmouseout=function(){w.x=null,w.y=null};for(var y=[],s=0;m.n&gt;s;s++){var f=x()*c,h=x()*a,g=2*x()-1,p=2*x()-1;y.push({x:f,y:h,xa:g,ya:p,max:6e3})}setTimeout(function(){i()},100)}();
+</code></pre><p>然后在<code>/themes/next/layout</code>路径下的<code>_layout.swig</code>文件里，最后的<code>body</code>标签上，引用我们刚新建的js文件</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot; src=&quot;/js/src/particle.js&quot;&gt;&lt;/script&gt;
+</code></pre><h2 id="尾记"><a href="#尾记" class="headerlink" title="尾记"></a>尾记</h2><p>至此基本上博客的功能就比较全了，其他的功能也还有很多，比如 PV啦，友链啦，搜索啦，笔者晚点会补上的。这期就先这样了，诸君，好运。<br><img src="https://cl.ly/1V0a2f2p0a1y/comic_dance.gif" alt=""></p>
+<hr>
+<p>This artical is avaliable under <a href="http://wtfpl2.com" target="_blank" rel="external">WTFPL-V2</a>. Generally, everyone is permitted to copy and do what the fuck you want to.<br>P.S. Even so said, your kindly declaration that inspired from this site - <a href="https://millionaryearl.github.io">Chen’s Alchemy</a> would be appreciated</p>
+<p>本文链接：<a href="https://millionaryearl.github.io/2016/09/19/hexo-Blog-method/">https://millionaryearl.github.io/2016/09/19/hexo-Blog-method/</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;主题相关的界面工作完成之后，这个博客总算是有点样子。但是我看来看去，赶脚似乎大概眉笔好像有那么一点点简陋的哇。所以这一期我们打算看看有哪些附属功能可以加到博客上。&lt;br&gt;&lt;strong&gt;&lt;em&gt;新任务获得：美化个人网站-附属功能&lt;/em&gt;&lt;/strong&gt; &lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Blog" scheme="https://millionaryearl.github.io/categories/Blog/"/>
+    
+    
+      <category term="Hexo" scheme="https://millionaryearl.github.io/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Build Your Own Blog  - 个性化设置(一)</title>
+    <link href="https://millionaryearl.github.io/2016/09/19/hexo-Blog-interface/"/>
+    <id>https://millionaryearl.github.io/2016/09/19/hexo-Blog-interface/</id>
+    <published>2016-09-19T01:29:43.000Z</published>
+    <updated>2016-09-19T09:11:03.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>有了基础的博客框架之后，我们就要去做一些个性化的设置了。毕竟同行千千万，内容取胜不太现实，所以咱就剑走偏锋把自己的博客给搞漂亮一些得了。<br><strong><em>新任务获得：美化个人网站-界面</em></strong> </p>
+<a id="more"></a>
+<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><h3 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h3><ol>
+<li>在 <a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">正面上我</a> 寻找喜欢的主题，这里我们使用 <a href="http://theme-next.iissnan.com" target="_blank" rel="external">NEXT</a> 主题（活跃度最好，API也比较全，推荐一哈）</li>
+<li>下载下来，保存到<code>主工程目录下 \themes</code>文件夹</li>
+<li><p>在 <code>主工程目录下的_config.yml</code> 文件里修改 <code>themes</code> 键值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">theme: next //themes文件夹中对应文件夹的名称</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="选定Scheme"><a href="#选定Scheme" class="headerlink" title="选定Scheme"></a>选定Scheme</h3><p>Scheme 是 NexT 提供的一种特性，简单点说呢就是这个主题可以通过改变 <code>Scheme</code> 的值来变成三种不同的布局：</p>
+<ul>
+<li>Muse - 默认 Scheme，这是 NexT 最初的版本，黑白主调，大量留白</li>
+<li>Mist - Muse 的紧凑版本，整洁有序的单栏外观</li>
+<li>Pisces - 双栏 Scheme，小家碧玉似的清新</li>
+</ul>
+<p>在 <strong>主题配置文件</strong><code>(/themes/next/_config.yml)</code>里修改 <code>scheme</code> 键值。</p>
+<pre><code>#scheme: Muse
+#scheme: Mist
+scheme: Pisces
+</code></pre><h3 id="站点语言"><a href="#站点语言" class="headerlink" title="站点语言"></a>站点语言</h3><p>通过修改 <strong>站点配置文件</strong><code>(工程主目录下的_config.yml)</code>，将<code>language</code> 设置成所需的语言编码</p>
+<pre><code>language: zh-Hans
+</code></pre><p>可选的语言编码如下表:</p>
+<table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>English</td>
+<td>en</td>
+</tr>
+<tr>
+<td>简体中文</td>
+<td>zh-Hans</td>
+</tr>
+<tr>
+<td>Français</td>
+<td>fr-FR</td>
+</tr>
+<tr>
+<td>Português</td>
+<td>pt</td>
+</tr>
+<tr>
+<td>繁體中文</td>
+<td>zh-hk 或者 zh-tw</td>
+</tr>
+<tr>
+<td>Русский язык</td>
+<td>ru</td>
+</tr>
+<tr>
+<td>Deutsch</td>
+<td>de</td>
+</tr>
+<tr>
+<td>日本語</td>
+<td>ja</td>
+</tr>
+<tr>
+<td>Indonesian</td>
+<td>id</td>
+</tr>
+</tbody>
+</table>
+<h3 id="菜单栏"><a href="#菜单栏" class="headerlink" title="菜单栏"></a>菜单栏</h3><ol>
+<li>设置菜单项目. 找到<strong>主题配置文件</strong><code>(/themes/next/_config.yml)</code>里<code>menu</code>字段，按照如下格式加入菜单项及其文件路径. </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">menu_option : folder_directory</div><div class="line">(e.g.)</div><div class="line">categories : /categories</div></pre></td></tr></table></figure>
+<p>   注意大部分菜单途径需要用户自己生成，在命令行工程主路径下，</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo new page &quot;menu_option&quot;</div><div class="line">(e.g.)</div><div class="line"> 	$ hexo new page &quot;categories&quot;</div></pre></td></tr></table></figure>
+<p>   然后编辑下 <code>/source/menu_option／index.md</code>， 大概弄成这样就成了</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: menu_option</div><div class="line">date: 自动生成的</div><div class="line">type: &quot;menu_option&quot;</div><div class="line">comments: false (如果你加了评论的话)</div><div class="line">---</div><div class="line">e.g.</div><div class="line">---</div><div class="line">title: categories</div><div class="line">date: 2016-09-18 16:12:40</div><div class="line">type: &quot;categories&quot;</div><div class="line">comments: false</div><div class="line">---</div></pre></td></tr></table></figure>
+<ol>
+<li><p>设置菜单项目名称. 找到<strong>主题对应语言文件</strong><code>(/themes/next/languages/your_language_name.yml)</code>里<code>menu</code>字段，按照如下格式加入菜单项名称</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">    menu_option : menu_name</div><div class="line">    (e.g.)</div><div class="line">    categories: 分类</div><div class="line"> ```   </div><div class="line">3. 设置菜单项目图标. 找到**主题配置文件**`(/themes/next/_config.yml)`里`menu_icons`字段，按照如下格式加入菜单项图标名称。这里的图标名称都是由 [Font Awesome](http://fontawesome.io) 提供的</div></pre></td></tr></table></figure>
+<p> menu_option : menu_icon_name<br> (e.g.)<br> categories: th</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"> </div><div class="line">### 设置头像</div><div class="line">1. 找到**主题配置文件**`(/themes/next/_config.yml)`里`avatar`字段, 设置图片地址</div></pre></td></tr></table></figure>
+<p> avatar: /images/avatar.png<br>```</p>
+</li>
+<li><p>把你的头像文件命名为 <code>avatar.png</code> 然后丢到 <code>(/themes/next/source/images)</code>文件夹里</p>
+</li>
+</ol>
+<h2 id="尾记"><a href="#尾记" class="headerlink" title="尾记"></a>尾记</h2><p>至此我们的博客站在界面布局方面就算是大功告成了，其实本期我们的主要工作就是把<strong>主题配置文件</strong><code>(/themes/next/_config.yml)</code>和 <strong>站点配置文件</strong><code>(工程主目录下的_config.yml)</code>的一些属性给配置起来，更多设置可以去 <a href="http://theme-next.iissnan.com/theme-settings.html" target="_blank" rel="external">正面上我</a>。 </p>
+<p>欣赏一下，感悟一下，陶醉一下，然后分享给你的小伙伴们吧，一大波崇拜的目光即将到来，嘿嘿嘿。</p>
+<p><img src="https://cl.ly/0k390e3v3z1v/comic_beautiful.jpg" alt=""></p>
+<hr>
+<p>This artical is avaliable under <a href="http://wtfpl2.com" target="_blank" rel="external">WTFPL-V2</a>. Generally, everyone is permitted to copy and do what the fuck you want to.<br>P.S. Even so said, your kindly declaration that inspired from this site - <a href="https://millionaryearl.github.io">Chen’s Alchemy</a> would be appreciated</p>
+<p>本文链接：<a href="https://millionaryearl.github.io/2016/09/19/hexo-Blog-interface/">https://millionaryearl.github.io/2016/09/19/hexo-Blog-interface/</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;有了基础的博客框架之后，我们就要去做一些个性化的设置了。毕竟同行千千万，内容取胜不太现实，所以咱就剑走偏锋把自己的博客给搞漂亮一些得了。&lt;br&gt;&lt;strong&gt;&lt;em&gt;新任务获得：美化个人网站-界面&lt;/em&gt;&lt;/strong&gt; &lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Blog" scheme="https://millionaryearl.github.io/categories/Blog/"/>
+    
+    
+      <category term="Hexo" scheme="https://millionaryearl.github.io/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Build Your Own Blog  - 建站并部署到Github</title>
+    <link href="https://millionaryearl.github.io/2016/09/13/hexo-Blog-framework/"/>
+    <id>https://millionaryearl.github.io/2016/09/13/hexo-Blog-framework/</id>
+    <published>2016-09-13T04:35:05.000Z</published>
+    <updated>2016-09-19T08:49:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>一直打算搞一个自己的技术博客站，比起用什么简书啊，CSDN的第三方平台，直接高冷的丢出去一个自制的博客站，简直就是装比于无形，想想就带感好吧。<br><strong><em>新任务获得：部署个人网站</em></strong></p>
 <a id="more"></a>
 <p>嗯常规套路先看炼成书, <code>通用合成公式 :－ 公网域名 ＋ 服务器 ＋ 网站代码 ＝ 个人网站</code>。呃，公网域名么 <a href="https://www.godaddy.com/" target="_blank" rel="external">狗爹</a> 上或许能找到便宜的。服务器，呃，<a href="https://aws.amazon.com" target="_blank" rel="external">AWS</a>好像有点贵，<a href="告www.aliyun.com">aliyun</a>凑合吧。网站代码，呃，不就是 <code>H5+CSS+JS/AJAX</code> 么，小意思。。。。。。个屁。哥是写Swift的，自己去搞这些web相关的，要搞死哥啊。再翻翻炼成书: <code>黑暗合成公式 :- hexo（网站代码） + github（公共域名 &amp; 服务器） = 个人网站</code> </p>
 <p><img src="https://cl.ly/022C2w20262o/commic_wow.jpg" alt=""></p>
@@ -84,73 +295,30 @@
 </li>
 </ol>
 <h3 id="Q2-Github部署时，总是提示-“Permission-Denied”"><a href="#Q2-Github部署时，总是提示-“Permission-Denied”" class="headerlink" title="Q2: Github部署时，总是提示 “Permission Denied”"></a>Q2: Github部署时，总是提示 “Permission Denied”</h3><p>这个是因为的Github的SSH连接授权有问题，需要确认本地机器上的ssh公钥与Github上的私钥是匹配的。如果实在无法确认的话，就直接去换套新的吧（作者就折腾了半天），<a href="https://help.github.com/articles/generating-an-ssh-key/" target="_blank" rel="external">正面上我</a> 。</p>
-<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><p>有了基本的架子之后，我们想要定制一些专属功能</p>
-<h3 id="Advance-1-修改公网网址"><a href="#Advance-1-修改公网网址" class="headerlink" title="Advance.1 修改公网网址"></a>Advance.1 修改公网网址</h3><p>这个其实是属于最基本的网站信息修改，此类修改只要找到工程目录里的 <code>_config.yml</code> 文件，然后修改对应的键值就可以了，具体的键名解析如下，<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="external">正面上我</a></p>
-<h3 id="Advance-2-发布博客"><a href="#Advance-2-发布博客" class="headerlink" title="Advance.2 发布博客"></a>Advance.2 发布博客</h3><ol>
+<h2 id="发布博客"><a href="#发布博客" class="headerlink" title="发布博客"></a>发布博客</h2><ol>
 <li><p>在命令行里执行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new [layout] &lt;title&gt;</div></pre></td></tr></table></figure>
 </li>
-<li><p>直接在工程目录的 <code>/source/_posts/</code> 下，新建 newblog.md 文件</p>
+<li><p>或者直接在工程目录的 <code>/source/_posts/</code> 下，新建 newblog.md 文件</p>
 </li>
 <li>编辑内容</li>
 <li>在命令行里执行<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo d</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<h3 id="Advance-3-更换主题"><a href="#Advance-3-更换主题" class="headerlink" title="Advance.3 更换主题"></a>Advance.3 更换主题</h3><ol>
-<li>在 <a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">正面上我</a> 寻找喜欢的主题</li>
-<li>下载下来，保存到工程目录里的 <code>themes</code> 文件夹下</li>
-<li>在 <code>_config.yml</code> 文件里修改<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> Extensions</div><div class="line">## Plugins: http://hexo.io/plugins/</div><div class="line">## Themes: http://hexo.io/themes/</div><div class="line">theme: landscape //themes文件夹中对应文件夹的名称</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="Advance-4-添加评论"><a href="#Advance-4-添加评论" class="headerlink" title="Advance.4 添加评论"></a>Advance.4 添加评论</h3><p>有的theme可能带有评论，而有的没有，比如作者用的这个<code>Oishi</code>。可行的插件有 <a href="https://disqus.com" target="_blank" rel="external"><strong><em>DISQUS</em></strong></a>  和 <a href="http://duoshuo.com" target="_blank" rel="external"><strong><em>多说</em></strong></a>, 这里我们选用 <strong>DISQUS</strong></p>
-<ol>
-<li>在<strong>DISQUS</strong>上注册账号</li>
-<li>在<strong>DISQUS</strong>上注册一个网站,得到网站的shortname</li>
-<li><p>在工程目录里找到<code>_config.yml</code>，加入如下代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># Disqus</div><div class="line">disqus_shortname: shortname</div></pre></td></tr></table></figure>
-</li>
-<li><p>更多样式设置或者相关疑问，<a href="http://morris821028.github.io/2014/04/12/web/hexo-comment/" target="_blank" rel="external">正面上我</a></p>
-</li>
-</ol>
 <h2 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h2><p><strong>Hexo</strong> 总体上来说还算是个挺不错的框架的，能玩的东西很多，插件，主题等等等等，想要学习更多的可以去 <a href="https://hexo.io/zh-cn/" target="_blank" rel="external">Hexo官网</a>看看。</p>
 <p>完结，撒花，鼓掌～～～</p>
+<hr>
+<p>This artical is avaliable under <a href="http://wtfpl2.com" target="_blank" rel="external">WTFPL-V2</a>. Generally, everyone is permitted to copy and do what the fuck you want to.<br>P.S. Even so said, your kindly declaration that inspired from this site - <a href="https://millionaryearl.github.io">Chen’s Alchemy</a> would be appreciated</p>
+<p>本文链接：<a href="https://millionaryearl.github.io/2016/09/13/hexo-Blog-framework/">https://millionaryearl.github.io/2016/09/13/hexo-Blog-framework/</a></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;一直打算搞一个自己的技术博客站，比起用什么简书啊，CSDN的第三方平台，直接高冷的丢出去一个自制的博客站，简直就是装比于无形，想想就带感好吧。&lt;strong&gt;&lt;em&gt;新任务获得：部署个人网站&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+      &lt;p&gt;一直打算搞一个自己的技术博客站，比起用什么简书啊，CSDN的第三方平台，直接高冷的丢出去一个自制的博客站，简直就是装比于无形，想想就带感好吧。&lt;br&gt;&lt;strong&gt;&lt;em&gt;新任务获得：部署个人网站&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
     
     </summary>
     
-    
-      <category term="Hexo" scheme="https://millionaryearl.github.io/tags/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://millionaryearl.github.io/2016/09/07/hello-world/"/>
-    <id>https://millionaryearl.github.io/2016/09/07/hello-world/</id>
-    <published>2016-09-07T02:20:48.000Z</published>
-    <updated>2016-09-07T02:24:32.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<a id="more"></a>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-    
-    </summary>
+      <category term="Blog" scheme="https://millionaryearl.github.io/categories/Blog/"/>
     
     
       <category term="Hexo" scheme="https://millionaryearl.github.io/tags/Hexo/"/>
@@ -159,12 +327,12 @@
   
   <entry>
     <title>Swift Notes - 阿里云推送SDK</title>
-    <link href="https://millionaryearl.github.io/2016/09/07/swift-note-1/"/>
-    <id>https://millionaryearl.github.io/2016/09/07/swift-note-1/</id>
+    <link href="https://millionaryearl.github.io/2016/09/07/swift-APNS-aliyun/"/>
+    <id>https://millionaryearl.github.io/2016/09/07/swift-APNS-aliyun/</id>
     <published>2016-09-07T02:15:50.000Z</published>
-    <updated>2016-09-13T04:16:03.000Z</updated>
+    <updated>2016-09-19T02:15:16.000Z</updated>
     
-    <content type="html"><![CDATA[<p>新项目里的消息推送功能，公司技术部开会讨论后决定让 极光，百度，aws都歇菜，取而代之的是尝试 使用阿里云推送SDK。所以今天就简单记录下调试过程。新任务获得：使用阿里云推送SDK实现消息推送功能～</p>
+    <content type="html"><![CDATA[<p>新项目里的消息推送功能，公司技术部开会讨论后决定让 极光，百度，aws都歇菜，取而代之的是尝试 使用阿里云推送SDK。所以今天就简单记录下调试过程。<br><strong><em>新任务获得：使用阿里云推送SDK实现消息推送功能～</em></strong></p>
 <a id="more"></a>
 <p>嗯常规套路先看官方文档 <a href="https://help.aliyun.com/document_detail/30072.html?spm=5176.doc30071.6.156.YoX0P8" target="_blank" rel="external">正面上我</a> 。 嗯，很详细，很耐斯，很桥豆麻袋？库文件是OC写的？？？</p>
 <p><img src="https://cl.ly/hRAS/ExcuseMe.jpeg" alt=""></p>
@@ -188,7 +356,7 @@
 <p><img src="https://cl.ly/hRAR/aliyun_4.jpeg" alt=""></p>
 <p>最后在刚才的桥接文件里，引入阿里云推送的库<code>#import &lt;CloudPushSDK/CloudPushSDK.h&gt;</code>, 这样就可以用SDK里的方法了。</p>
 <h3 id="Step-2-配置推送"><a href="#Step-2-配置推送" class="headerlink" title="Step.2 - 配置推送"></a>Step.2 - 配置推送</h3><p>先在APP启动时调用配置方法。</p>
-<p><img src="https://cl.ly/hRN5/aliyun_5.png" alt=""></p>
+<p><img src="https://cl.ly/hRN5/aliyun_5.png" alt=""><br>```</p>
 <p>配置推送注册方法</p>
 <p><img src="https://cl.ly/hR4P/aliyun_6.png" alt=""></p>
 <p>推送处理方法</p>
@@ -197,13 +365,18 @@
 <p><img src="https://cl.ly/hQrt/aliyun_8.png" alt=""></p>
 <p>完结，鼓掌，撒花～～</p>
 <p><img src="https://cl.ly/hQsX/PrettyGood.png" alt=""></p>
+<hr>
+<p>This artical is avaliable under <a href="http://wtfpl2.com" target="_blank" rel="external">WTFPL-V2</a>. Generally, everyone is permitted to copy and do what the fuck you want to.<br>P.S. Even so said, your kindly declaration that inspired from this site - <a href="https://millionaryearl.github.io">Chen’s Alchemy</a> would be appreciated</p>
+<p>本文链接：<a href="https://millionaryearl.github.io/2016/09/07/swift-APNS-aliyun/">https://millionaryearl.github.io/2016/09/07/swift-APNS-aliyun/</a></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;新项目里的消息推送功能，公司技术部开会讨论后决定让 极光，百度，aws都歇菜，取而代之的是尝试 使用阿里云推送SDK。所以今天就简单记录下调试过程。新任务获得：使用阿里云推送SDK实现消息推送功能～&lt;/p&gt;
+      &lt;p&gt;新项目里的消息推送功能，公司技术部开会讨论后决定让 极光，百度，aws都歇菜，取而代之的是尝试 使用阿里云推送SDK。所以今天就简单记录下调试过程。&lt;br&gt;&lt;strong&gt;&lt;em&gt;新任务获得：使用阿里云推送SDK实现消息推送功能～&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
     
     </summary>
+    
+      <category term="APNS" scheme="https://millionaryearl.github.io/categories/APNS/"/>
     
     
       <category term="Swift" scheme="https://millionaryearl.github.io/tags/Swift/"/>

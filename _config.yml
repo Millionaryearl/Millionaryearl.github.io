@@ -64,10 +64,15 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 plugins: hexo-generator-feed
-theme: oishi
+theme: next
 
 # Disqus
 disqus_shortname: millionaryearl
+
+# Search
+search:
+  path: search.xml
+  field: post
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -75,3 +80,10 @@ deploy:
   type: git
   repo: git@github.com:Millionaryearl/Millionaryearl.github.io.git
   branch: master
+
+# Auto generate sitemap
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
+

@@ -1,0 +1,892 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Swift," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Chen's Alchemy" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="新项目里的消息推送功能，公司技术部开会讨论后决定让 极光，百度，aws都歇菜，取而代之的是尝试 使用阿里云推送SDK。所以今天就简单记录下调试过程。新任务获得：使用阿里云推送SDK实现消息推送功能～">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift Notes - 阿里云推送SDK">
+<meta property="og:url" content="https://millionaryearl.github.io/2016/09/07/swift-APNS-aliyun/index.html">
+<meta property="og:site_name" content="Chen's Alchemy">
+<meta property="og:description" content="新项目里的消息推送功能，公司技术部开会讨论后决定让 极光，百度，aws都歇菜，取而代之的是尝试 使用阿里云推送SDK。所以今天就简单记录下调试过程。新任务获得：使用阿里云推送SDK实现消息推送功能～">
+<meta property="og:image" content="https://cl.ly/hRAS/ExcuseMe.jpeg">
+<meta property="og:image" content="https://cl.ly/hREs/challenge-accepted-meme.jpg">
+<meta property="og:image" content="https://cl.ly/hQyC/aliyun_1.jpeg">
+<meta property="og:image" content="https://cl.ly/hRCF/aliyun_2.png">
+<meta property="og:image" content="https://cl.ly/hRGV/aliyun_3.jpeg">
+<meta property="og:image" content="https://cl.ly/hRAR/aliyun_4.jpeg">
+<meta property="og:image" content="https://cl.ly/hRN5/aliyun_5.png">
+<meta property="og:image" content="https://cl.ly/hR4P/aliyun_6.png">
+<meta property="og:image" content="https://cl.ly/hR86/aliyun_7.png">
+<meta property="og:image" content="https://cl.ly/hQrt/aliyun_8.png">
+<meta property="og:image" content="https://cl.ly/hQsX/PrettyGood.png">
+<meta property="og:updated_time" content="2016-09-19T02:15:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift Notes - 阿里云推送SDK">
+<meta name="twitter:description" content="新项目里的消息推送功能，公司技术部开会讨论后决定让 极光，百度，aws都歇菜，取而代之的是尝试 使用阿里云推送SDK。所以今天就简单记录下调试过程。新任务获得：使用阿里云推送SDK实现消息推送功能～">
+<meta name="twitter:image" content="https://cl.ly/hRAS/ExcuseMe.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://millionaryearl.github.io/2016/09/07/swift-APNS-aliyun/"/>
+
+  <title> Swift Notes - 阿里云推送SDK | Chen's Alchemy </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Chen's Alchemy</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">iOS Notes</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Swift Notes - 阿里云推送SDK
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-07T10:15:50+08:00" content="2016-09-07">
+              2016-09-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/APNS/" itemprop="url" rel="index">
+                    <span itemprop="name">APNS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/07/swift-APNS-aliyun/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/07/swift-APNS-aliyun/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>新项目里的消息推送功能，公司技术部开会讨论后决定让 极光，百度，aws都歇菜，取而代之的是尝试 使用阿里云推送SDK。所以今天就简单记录下调试过程。<br><strong><em>新任务获得：使用阿里云推送SDK实现消息推送功能～</em></strong></p>
+<a id="more"></a>
+<p>嗯常规套路先看官方文档 <a href="https://help.aliyun.com/document_detail/30072.html?spm=5176.doc30071.6.156.YoX0P8" target="_blank" rel="external">正面上我</a> 。 嗯，很详细，很耐斯，很桥豆麻袋？库文件是OC写的？？？</p>
+<p><img src="https://cl.ly/hRAS/ExcuseMe.jpeg" alt=""></p>
+<p>坑爹啊，哥的项目都是swift写的啊。呃。。。。。。。。。好吧，也许加一个桥接就可以了。任务变更：桥接阿里云推送SDK（OC版）到Swift工程里，而后实现消息推送功能～</p>
+<p><img src="https://cl.ly/hREs/challenge-accepted-meme.jpg" alt=""></p>
+<h2 id="Ready-to-work"><a href="#Ready-to-work" class="headerlink" title="Ready to work"></a>Ready to work</h2><p>所谓工欲善其事，必先利其器。而且消息推送功能本身就是配置打过逻辑代码的功能，所以我们先要把准备工作做好。</p>
+<hr>
+<h3 id="Step-1-准备certificate文件"><a href="#Step-1-准备certificate文件" class="headerlink" title="Step.1 - 准备certificate文件"></a>Step.1 - 准备certificate文件</h3><p>由于消息推送功能的实现，涉及到Apple的官方资源（感兴趣的同志们可以自行去谷歌APNS），所以需要准备特别的证书文件：<strong><em>development certificate x1</em></strong>， <strong><em>distribution certificate x1</em></strong>。然后这两个文件具体怎么获得呢，请 <a href="https://help.aliyun.com/document_detail/30071.html?spm=5176.doc30072.6.155.ItR8Ib" target="_blank" rel="external">正面上我</a> 。</p>
+<h3 id="Step-2-获得AppKey-AppSecret"><a href="#Step-2-获得AppKey-AppSecret" class="headerlink" title="Step.2 - 获得AppKey, AppSecret"></a>Step.2 - 获得AppKey, AppSecret</h3><p>这个appkey 和appsecret 是做啥的呢，嗯简单说就是这两个字串是阿里云用来标记你的app的，万一推错了就不好嘛，稍后我们会用点。那么问题又来了这两个字串那里搞呢？</p>
+<p>支线任务获得：寻找NPC -公司的推送服务后台开发人员，交付 <strong><em>development certificate x1</em></strong>， <strong><em>distribution certificate x1</em></strong>后，获得 <strong><em>AppKey x1</em></strong>, <strong><em>AppSecret x1</em></strong>.</p>
+<h3 id="Step-3-配置App"><a href="#Step-3-配置App" class="headerlink" title="Step.3 - 配置App"></a>Step.3 - 配置App</h3><p>配置App这个就简单了，打开你的项目代码。先把开发团队调到你们的公司</p>
+<p><img src="https://cl.ly/hQyC/aliyun_1.jpeg" alt=""></p>
+<p>然后打开 Post Notifications 功能</p>
+<p><img src="https://cl.ly/hRCF/aliyun_2.png" alt=""></p>
+<h3 id="Step-4-引入阿里云SDK"><a href="#Step-4-引入阿里云SDK" class="headerlink" title="Step.4 - 引入阿里云SDK"></a>Step.4 - 引入阿里云SDK</h3><p>下载好压缩包打开，获得四个库文件，然后全部拖到你的项目工程里去。再然后么把 build settings 里的 Enable Bitcode 给关了。最后再转到 Build Phases 里面的 Link Binary With libraries， 加入四个依赖的系统库: libz.tbd，libresolv.tbd，CoreTelephony.framework，SystemConfiguration.framework 。</p>
+<hr>
+<p>好啦，到此基本上所有的准备工作都做好了。接下来我们就可以开始写代码了。P.S. <del>其实上面的都可以在阿里云文档里看到，哥只是拿来凑字的</del>～～</p>
+<h2 id="Core-Work"><a href="#Core-Work" class="headerlink" title="Core Work"></a>Core Work</h2><h3 id="Step-1-桥接"><a href="#Step-1-桥接" class="headerlink" title="Step.1 - 桥接"></a>Step.1 - 桥接</h3><p>先建立一个 Header File，命名为 YourProjectName-Bridging-Header.h 。 </p>
+<p><img src="https://cl.ly/hRGV/aliyun_3.jpeg" alt=""></p>
+<p>然后呢去到 Build Setting里，找到 Objective-C Bridging Header 填入刚才的文件名</p>
+<p><img src="https://cl.ly/hRAR/aliyun_4.jpeg" alt=""></p>
+<p>最后在刚才的桥接文件里，引入阿里云推送的库<code>#import &lt;CloudPushSDK/CloudPushSDK.h&gt;</code>, 这样就可以用SDK里的方法了。</p>
+<h3 id="Step-2-配置推送"><a href="#Step-2-配置推送" class="headerlink" title="Step.2 - 配置推送"></a>Step.2 - 配置推送</h3><p>先在APP启动时调用配置方法。</p>
+<p><img src="https://cl.ly/hRN5/aliyun_5.png" alt=""><br>```</p>
+<p>配置推送注册方法</p>
+<p><img src="https://cl.ly/hR4P/aliyun_6.png" alt=""></p>
+<p>推送处理方法</p>
+<p><img src="https://cl.ly/hR86/aliyun_7.png" alt=""></p>
+<p>最后运行程序，看到如下结果就可以去交任务啦。</p>
+<p><img src="https://cl.ly/hQrt/aliyun_8.png" alt=""></p>
+<p>完结，鼓掌，撒花～～</p>
+<p><img src="https://cl.ly/hQsX/PrettyGood.png" alt=""></p>
+<hr>
+<p>This artical is avaliable under <a href="http://wtfpl2.com" target="_blank" rel="external">WTFPL-V2</a>. Generally, everyone is permitted to copy and do what the fuck you want to.<br>P.S. Even so said, your kindly declaration that inspired from this site - <a href="https://millionaryearl.github.io">Chen’s Alchemy</a> would be appreciated</p>
+<p>本文链接：<a href="https://millionaryearl.github.io/2016/09/07/swift-APNS-aliyun/">https://millionaryearl.github.io/2016/09/07/swift-APNS-aliyun/</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>我知道是不会有人点的，但万一有人想不开呢？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="https://cl.ly/3W3I3O3t1622/wexinpay.JPG" alt="Chen Wei WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="https://cl.ly/3t1O403j2P1F/alipay.JPG" alt="Chen Wei Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag">#Swift</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/13/hexo-Blog-framework/" rel="prev" title="Build Your Own Blog  - 建站并部署到Github">
+                Build Your Own Blog  - 建站并部署到Github <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Chen Wei" />
+          <p class="site-author-name" itemprop="name">Chen Wei</p>
+          <p class="site-description motion-element" itemprop="description">Hi, I'm Chen, an iOS Engineer from China</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Millionaryearl" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2334525960/profile?topnav=1&wvr=6&is_all=1" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://dukewei.typify.io" target="_blank" title="Personal">
+                  
+                    <i class="fa fa-fw fa-home"></i>
+                  
+                  Personal
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ready-to-work"><span class="nav-number">1.</span> <span class="nav-text">Ready to work</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1-准备certificate文件"><span class="nav-number">1.1.</span> <span class="nav-text">Step.1 - 准备certificate文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2-获得AppKey-AppSecret"><span class="nav-number">1.2.</span> <span class="nav-text">Step.2 - 获得AppKey, AppSecret</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-3-配置App"><span class="nav-number">1.3.</span> <span class="nav-text">Step.3 - 配置App</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-4-引入阿里云SDK"><span class="nav-number">1.4.</span> <span class="nav-text">Step.4 - 引入阿里云SDK</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Core-Work"><span class="nav-number">2.</span> <span class="nav-text">Core Work</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1-桥接"><span class="nav-number">2.1.</span> <span class="nav-text">Step.1 - 桥接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2-配置推送"><span class="nav-number">2.2.</span> <span class="nav-text">Step.2 - 配置推送</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chen Wei</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'millionaryearl';
+      var disqus_identifier = '2016/09/07/swift-APNS-aliyun/';
+      var disqus_title = "Swift Notes - 阿里云推送SDK";
+      var disqus_url = 'https://millionaryearl.github.io/2016/09/07/swift-APNS-aliyun/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+</body>
+</html>
