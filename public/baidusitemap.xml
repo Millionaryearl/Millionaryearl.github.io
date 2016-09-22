@@ -4,48 +4,8 @@
 
     
   <url>
-    <loc>https://millionaryearl.github.io/2016/09/19/hexo-Blog-method/</loc>
-    <lastmod>2016-09-20T02:45:26.000Z</lastmod>
-    <data>
-        <display>
-        <title>Build Your Own Blog  - 个性化设置(二)</title>
-        <pubTime>2016-09-19T02:51:30.000Z</pubTime>
-        
-        <tag>Hexo</tag>
-         
-         
-           
-             
-              <breadCrumb title="Blog" url="https://millionaryearl.github.io/categories/Blog/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://millionaryearl.github.io/2016/09/19/hexo-Blog-interface/</loc>
-    <lastmod>2016-09-19T09:11:03.000Z</lastmod>
-    <data>
-        <display>
-        <title>Build Your Own Blog  - 个性化设置(一)</title>
-        <pubTime>2016-09-19T01:29:43.000Z</pubTime>
-        
-        <tag>Hexo</tag>
-         
-         
-           
-             
-              <breadCrumb title="Blog" url="https://millionaryearl.github.io/categories/Blog/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://millionaryearl.github.io/2016/09/19/hexo-Blog-SEO/</loc>
-    <lastmod>2016-09-19T08:50:07.000Z</lastmod>
+    <lastmod>2016-09-22T09:22:48.000Z</lastmod>
     <data>
         <display>
         <title>Build Your Own Blog  - 个性化设置(三)</title>
@@ -65,11 +25,51 @@
     
   <url>
     <loc>https://millionaryearl.github.io/2016/09/13/hexo-Blog-framework/</loc>
-    <lastmod>2016-09-19T08:49:58.000Z</lastmod>
+    <lastmod>2016-09-22T08:33:13.000Z</lastmod>
     <data>
         <display>
         <title>Build Your Own Blog  - 建站并部署到Github</title>
         <pubTime>2016-09-13T04:35:05.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="Blog" url="https://millionaryearl.github.io/categories/Blog/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://millionaryearl.github.io/2016/09/19/hexo-Blog-interface/</loc>
+    <lastmod>2016-09-22T08:28:01.000Z</lastmod>
+    <data>
+        <display>
+        <title>Build Your Own Blog  - 个性化设置(一)</title>
+        <pubTime>2016-09-19T01:29:43.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="Blog" url="https://millionaryearl.github.io/categories/Blog/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://millionaryearl.github.io/2016/09/19/hexo-Blog-method/</loc>
+    <lastmod>2016-09-22T08:17:24.000Z</lastmod>
+    <data>
+        <display>
+        <title>Build Your Own Blog  - 个性化设置(二)</title>
+        <pubTime>2016-09-19T02:51:30.000Z</pubTime>
         
         <tag>Hexo</tag>
          

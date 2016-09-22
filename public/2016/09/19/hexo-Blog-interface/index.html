@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="Chen's Alchemy">
 <meta property="og:description" content="有了基础的博客框架之后，我们就要去做一些个性化的设置了。毕竟同行千千万，内容取胜不太现实，所以咱就剑走偏锋把自己的博客给搞漂亮一些得了。新任务获得：美化个人网站-界面">
 <meta property="og:image" content="https://cl.ly/0k390e3v3z1v/comic_beautiful.jpg">
-<meta property="og:updated_time" content="2016-09-19T09:11:03.000Z">
+<meta property="og:updated_time" content="2016-09-22T08:28:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Build Your Own Blog  - 个性化设置(一)">
 <meta name="twitter:description" content="有了基础的博客框架之后，我们就要去做一些个性化的设置了。毕竟同行千千万，内容取胜不太现实，所以咱就剑走偏锋把自己的博客给搞漂亮一些得了。新任务获得：美化个人网站-界面">
@@ -408,24 +408,33 @@ scheme: Pisces
 </tbody>
 </table>
 <h3 id="菜单栏"><a href="#菜单栏" class="headerlink" title="菜单栏"></a>菜单栏</h3><ol>
-<li>设置菜单项目. 找到<strong>主题配置文件</strong><code>(/themes/next/_config.yml)</code>里<code>menu</code>字段，按照如下格式加入菜单项及其文件路径. </li>
-</ol>
+<li><p>设置菜单项目. 找到<strong>主题配置文件</strong><code>(/themes/next/_config.yml)</code>里<code>menu</code>字段，按照如下格式加入菜单项及其文件路径. </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">menu_option : folder_directory</div><div class="line">(e.g.)</div><div class="line">categories : /categories</div></pre></td></tr></table></figure>
-<p>   注意大部分菜单途径需要用户自己生成，在命令行工程主路径下，</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo new page &quot;menu_option&quot;</div><div class="line">(e.g.)</div><div class="line"> 	$ hexo new page &quot;categories&quot;</div></pre></td></tr></table></figure>
-<p>   然后编辑下 <code>/source/menu_option／index.md</code>， 大概弄成这样就成了</p>
+</li>
+<li><p>设置菜单项目. 注意大部分菜单途径需要用户自己生成，在命令行工程主路径下，  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo new page &quot;menu_option&quot;</div><div class="line">(e.g.)</div><div class="line">$ hexo new page &quot;categories&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置菜单项目. 然后编辑下 <code>/source/menu_option／index.md</code>， 大概弄成这样就成了,</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: menu_option</div><div class="line">date: 自动生成的</div><div class="line">type: &quot;menu_option&quot;</div><div class="line">comments: false (如果你加了评论的话)</div><div class="line">---</div><div class="line">e.g.</div><div class="line">---</div><div class="line">title: categories</div><div class="line">date: 2016-09-18 16:12:40</div><div class="line">type: &quot;categories&quot;</div><div class="line">comments: false</div><div class="line">---</div></pre></td></tr></table></figure>
-<ol>
-<li><p>设置菜单项目名称. 找到<strong>主题对应语言文件</strong><code>(/themes/next/languages/your_language_name.yml)</code>里<code>menu</code>字段，按照如下格式加入菜单项名称</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">    menu_option : menu_name</div><div class="line">    (e.g.)</div><div class="line">    categories: 分类</div><div class="line"> ```   </div><div class="line">3. 设置菜单项目图标. 找到**主题配置文件**`(/themes/next/_config.yml)`里`menu_icons`字段，按照如下格式加入菜单项图标名称。这里的图标名称都是由 [Font Awesome](http://fontawesome.io) 提供的</div></pre></td></tr></table></figure>
-<p> menu_option : menu_icon_name<br> (e.g.)<br> categories: th</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"> </div><div class="line">### 设置头像</div><div class="line">1. 找到**主题配置文件**`(/themes/next/_config.yml)`里`avatar`字段, 设置图片地址</div></pre></td></tr></table></figure>
-<p> avatar: /images/avatar.png<br>```</p>
+</li>
+<li><p>设置菜单项目名称. 找到<strong>主题对应语言文件</strong><code>(/themes/next/languages/your_language_name.yml)</code>里<code>menu</code>字段，按照如下格式加入菜单项名称,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">menu_option : menu_name</div><div class="line">(e.g.)</div><div class="line">categories: 分类</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置菜单项目图标. 找到<strong>主题配置文件</strong><code>(/themes/next/_config.yml)</code>里<code>menu_icons</code>字段，按照如下格式加入菜单项图标名称。这里的图标名称都是由 <a href="http://fontawesome.io" target="_blank" rel="external">Font Awesome</a> 提供的,</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">menu_option : menu_icon_name</div><div class="line">(e.g.)</div><div class="line">categories: th</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="设置头像"><a href="#设置头像" class="headerlink" title="设置头像"></a>设置头像</h3><ol>
+<li><p>找到<strong>主题配置文件</strong><code>(/themes/next/_config.yml)</code>里<code>avatar</code>字段, 设置图片地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">avatar: /images/avatar.png</div></pre></td></tr></table></figure>
 </li>
 <li><p>把你的头像文件命名为 <code>avatar.png</code> 然后丢到 <code>(/themes/next/source/images)</code>文件夹里</p>
 </li>
 </ol>
-<h2 id="尾记"><a href="#尾记" class="headerlink" title="尾记"></a>尾记</h2><p>至此我们的博客站在界面布局方面就算是大功告成了，其实本期我们的主要工作就是把<strong>主题配置文件</strong><code>(/themes/next/_config.yml)</code>和 <strong>站点配置文件</strong><code>(工程主目录下的_config.yml)</code>的一些属性给配置起来，更多设置可以去 <a href="http://theme-next.iissnan.com/theme-settings.html" target="_blank" rel="external">正面上我</a>。 </p>
+<h3 id="颜色字体"><a href="#颜色字体" class="headerlink" title="颜色字体"></a>颜色字体</h3><p>这个其实算是最简单的差异化修改了，只要找到<code>/themes/next/source/css/variables/base.styl</code>文件里，把对应的颜色和字体改成自己想要的值就可以了，例如作者就修改了</p>
+<pre><code>$black-light  = #336699
+$black-deep   = #660066
+</code></pre><h2 id="尾记"><a href="#尾记" class="headerlink" title="尾记"></a>尾记</h2><p>至此我们的博客站在界面布局方面就算是大功告成了，其实本期我们的主要工作就是把<strong>主题配置文件</strong><code>(/themes/next/_config.yml)</code>和 <strong>站点配置文件</strong><code>(工程主目录下的_config.yml)</code>的一些属性给配置起来，其他的很多配置工作都是通过修改其中对应的键值实现的，具体的键名解析请 <a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="external">正面上我</a>。 </p>
 <p>欣赏一下，感悟一下，陶醉一下，然后分享给你的小伙伴们吧，一大波崇拜的目光即将到来，嘿嘿嘿。</p>
 <p><img src="https://cl.ly/0k390e3v3z1v/comic_beautiful.jpg" alt=""></p>
 <hr>
@@ -650,7 +659,7 @@ scheme: Pisces
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#更换主题"><span class="nav-number">1.</span> <span class="nav-text">更换主题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#替换"><span class="nav-number">1.1.</span> <span class="nav-text">替换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选定Scheme"><span class="nav-number">1.2.</span> <span class="nav-text">选定Scheme</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#站点语言"><span class="nav-number">1.3.</span> <span class="nav-text">站点语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#菜单栏"><span class="nav-number">1.4.</span> <span class="nav-text">菜单栏</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#尾记"><span class="nav-number">2.</span> <span class="nav-text">尾记</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#更换主题"><span class="nav-number">1.</span> <span class="nav-text">更换主题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#替换"><span class="nav-number">1.1.</span> <span class="nav-text">替换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选定Scheme"><span class="nav-number">1.2.</span> <span class="nav-text">选定Scheme</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#站点语言"><span class="nav-number">1.3.</span> <span class="nav-text">站点语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#菜单栏"><span class="nav-number">1.4.</span> <span class="nav-text">菜单栏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置头像"><span class="nav-number">1.5.</span> <span class="nav-text">设置头像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#颜色字体"><span class="nav-number">1.6.</span> <span class="nav-text">颜色字体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#尾记"><span class="nav-number">2.</span> <span class="nav-text">尾记</span></a></li></ol></div>
             
           </div>
         </section>

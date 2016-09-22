@@ -54,25 +54,23 @@ Scheme 是 NexT 提供的一种特性，简单点说呢就是这个主题可以�
 | Indonesian | id |
 
 ### 菜单栏
-1. 设置菜单项目. 找到**主题配置文件**`(/themes/next/_config.yml)`里`menu`字段，按照如下格式加入菜单项及其文件路径. 
 
+1. 设置菜单项目. 找到**主题配置文件**`(/themes/next/_config.yml)`里`menu`字段，按照如下格式加入菜单项及其文件路径. 
 ```
     menu_option : folder_directory
     (e.g.)
     categories : /categories
 ```
-        
-   注意大部分菜单途径需要用户自己生成，在命令行工程主路径下，
-   
- ``` 
+2. 设置菜单项目. 注意大部分菜单途径需要用户自己生成，在命令行工程主路径下，  
+``` 
  	$ hexo new page "menu_option"
  	(e.g.)
-   	$ hexo new page "categories"
- ```
+ 	$ hexo new page "categories"
+```
 
-   然后编辑下 `/source/menu_option／index.md`， 大概弄成这样就成了
-   
- ```
+3. 设置菜单项目. 然后编辑下 `/source/menu_option／index.md`， 大概弄成这样就成了,
+
+	```
     ---
     title: menu_option
     date: 自动生成的
@@ -86,35 +84,44 @@ Scheme 是 NexT 提供的一种特性，简单点说呢就是这个主题可以�
     type: "categories"
     comments: false
     ---
- ```
-    
-2. 设置菜单项目名称. 找到**主题对应语言文件**`(/themes/next/languages/your_language_name.yml)`里`menu`字段，按照如下格式加入菜单项名称
+	```
+4. 设置菜单项目名称. 找到**主题对应语言文件**`(/themes/next/languages/your_language_name.yml)`里`menu`字段，按照如下格式加入菜单项名称,
 
  ```
     menu_option : menu_name
     (e.g.)
     categories: 分类
- ```   
-3. 设置菜单项目图标. 找到**主题配置文件**`(/themes/next/_config.yml)`里`menu_icons`字段，按照如下格式加入菜单项图标名称。这里的图标名称都是由 [Font Awesome](http://fontawesome.io) 提供的
+	
+```
 
- ```
+5. 设置菜单项目图标. 找到**主题配置文件**`(/themes/next/_config.yml)`里`menu_icons`字段，按照如下格式加入菜单项图标名称。这里的图标名称都是由 [Font Awesome](http://fontawesome.io) 提供的,
+ 	
+ 	```
     menu_option : menu_icon_name
     (e.g.)
     categories: th
- ```
- 
-### 设置头像
-1. 找到**主题配置文件**`(/themes/next/_config.yml)`里`avatar`字段, 设置图片地址
+ 	```
 
- ```
+### 设置头像
+
+1. 找到**主题配置文件**`(/themes/next/_config.yml)`里`avatar`字段, 设置图片地址
+```
     avatar: /images/avatar.png
- ```
+```
 
 2. 把你的头像文件命名为 `avatar.png` 然后丢到 `(/themes/next/source/images)`文件夹里
 
+
+### 颜色字体
+
+这个其实算是最简单的差异化修改了，只要找到`/themes/next/source/css/variables/base.styl`文件里，把对应的颜色和字体改成自己想要的值就可以了，例如作者就修改了
+
+     $black-light  = #336699
+     $black-deep   = #660066
+
 ## 尾记
 
-至此我们的博客站在界面布局方面就算是大功告成了，其实本期我们的主要工作就是把**主题配置文件**`(/themes/next/_config.yml)`和 **站点配置文件**`(工程主目录下的_config.yml)`的一些属性给配置起来，更多设置可以去 [正面上我](http://theme-next.iissnan.com/theme-settings.html)。 
+至此我们的博客站在界面布局方面就算是大功告成了，其实本期我们的主要工作就是把**主题配置文件**`(/themes/next/_config.yml)`和 **站点配置文件**`(工程主目录下的_config.yml)`的一些属性给配置起来，其他的很多配置工作都是通过修改其中对应的键值实现的，具体的键名解析请 [正面上我](https://hexo.io/zh-cn/docs/configuration.html)。 
 
 欣赏一下，感悟一下，陶醉一下，然后分享给你的小伙伴们吧，一大波崇拜的目光即将到来，嘿嘿嘿。
 

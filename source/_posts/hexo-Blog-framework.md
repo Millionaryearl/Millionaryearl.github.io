@@ -10,7 +10,7 @@ categories: "Blog"
 
 <!--more-->
 
-嗯常规套路先看炼成书, `通用合成公式 :－ 公网域名 ＋ 服务器 ＋ 网站代码 ＝ 个人网站`。呃，公网域名么 [狗爹](https://www.godaddy.com/) 上或许能找到便宜的。服务器，呃，[AWS](https://aws.amazon.com)好像有点贵，[aliyun](告www.aliyun.com)凑合吧。网站代码，呃，不就是 `H5+CSS+JS/AJAX` 么，小意思。。。。。。个屁。哥是写Swift的，自己去搞这些web相关的，要搞死哥啊。再翻翻炼成书: `黑暗合成公式 :- hexo（网站代码） + github（公共域名 & 服务器） = 个人网站` 
+嗯常规套路先看炼成书, `通用合成公式 :－ 公网域名 ＋ 服务器 ＋ 网站代码 ＝ 个人网站`。呃，公网域名么 [狗爹](https://www.godaddy.com/) 上或许能找到便宜的。服务器，呃，[AWS](https://aws.amazon.com)好像有点贵，[aliyun](https://www.aliyun.com)凑合吧。网站代码，呃，不就是 `H5+CSS+JS/AJAX` 么，小意思。。。。。。个屁。哥是写Swift的，自己去搞这些web相关的，要搞死哥啊。再翻翻炼成书: `黑暗合成公式 :- hexo（网站代码） + github（公共域名 & 服务器） = 个人网站` 
 
 ![](https://cl.ly/022C2w20262o/commic_wow.jpg)
 
