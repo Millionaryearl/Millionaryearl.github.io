@@ -10,18 +10,21 @@ categories: "Blog"
 
 <!--more-->
 
-嗯常规套路先看炼成书, `通用合成公式 :－ 公网域名 ＋ 服务器 ＋ 网站代码 ＝ 个人网站`。呃，公网域名么 [狗爹](https://www.godaddy.com/) 上或许能找到便宜的。服务器，呃，[AWS](https://aws.amazon.com)好像有点贵，[aliyun](https://www.aliyun.com)凑合吧。网站代码，呃，不就是 `H5+CSS+JS/AJAX` 么，小意思。。。。。。个屁。哥是写Swift的，自己去搞这些web相关的，要搞死哥啊。再翻翻炼成书: `黑暗合成公式 :- hexo（网站代码） + github（公共域名 & 服务器） = 个人网站` 
+嗯常规套路先看炼成书，查阅 个人网站 项：
+`公网域名 ＋ 服务器 ＋ 网站代码 ＝ 个人网站（常规合成法则）`
+呃，公网域名么 [狗爹][1] 上或许能找到便宜的。服务器，呃，[AWS][2]好像有点贵，[aliyun][3]凑合吧。网站代码，呃，不就是 `H5+CSS+JS/AJAX` 么，小意思。。。。。。个屁。哥是写Swift的，自己去搞这些web相关的，要搞死哥啊。再翻翻炼成书: 
+`hexo（网站代码） + github（公共域名 & 服务器） = 个人网站（黑暗合成法则）` 
 
-![](https://cl.ly/022C2w20262o/commic_wow.jpg)
+![][4]
 
-就你了，任务更新：*** 使用 [Hexo](https://hexo.io/docs/) 和 [Github](https://github.com) 制成个人博客。 ***
+***任务更新：使用 [Hexo][5] 和 [Github][6] 制成个人博客。 ***
 
 ## 准备工作
 
 ### Step.1 开发环境
 
- 1. **Node.js** 	[安装指南](https://nodejs.org/en/download/package-manager/#osx)
- 2. **Git** 		[安装指南](https://git-scm.com/book/zh/v1/起步-安装-Git)
+ 1. **Node.js** 	[安装指南][7]
+ 2. **Git** 		[安装指南][8]
  3. 运行如下命令不报错即配置成功。
  	```
 	$ npm -v
@@ -38,10 +41,10 @@ categories: "Blog"
  	* 开启 Reposity **Setting** 页面如下
  	* 点击 **Automatic page generator**
  	
- ![](https://cl.ly/240P2i1D0b3j/hexo_1.png)
+ ![][9]
  
  3. 能够正常访问网址: `yourname.github.io` ，即配置成功。***这个地址将成为你的博客网址（可以修改）***
- ![](https://cl.ly/2L1R2X0e2j0U/comic_brilliant.jpg)
+ ![][10]
  
  
 ### Step.3 Hexo
@@ -69,7 +72,7 @@ categories: "Blog"
 	```
 如果能看到提示：``INFO  Hexo is running at http://0.0.0.0:4000/. Press Ctrl+C to stop.``你就可以去浏览器里打开``http://localhost:4000/``，欣赏你的个人博客了
 
-![](https://cl.ly/1o0m2K121V18/hexo_2.png)
+![][11]
 
 ### Step.3 Github部署
 
@@ -95,7 +98,7 @@ $ hexo d
 
 如果能看到提示 ``INFO  Deploy done: git`` 你就可以去浏览器里打开 ``yourname.github.io``，继续欣赏你的个人博客了。
 
-![](https://cl.ly/441e3k3O1r2G/commic_yeah.jpg)
+![][12]
 
 
 ## 可能遇到的问题
@@ -108,7 +111,7 @@ $ pwd
 2. 其次确保 `node.js` & `git` & `hexo` 确实安装成功了，详见上述准备环节
 
 ### Q2: Github部署时，总是提示 “Permission Denied”
-这个是因为的Github的SSH连接授权有问题，需要确认本地机器上的ssh公钥与Github上的私钥是匹配的。如果实在无法确认的话，就直接去换套新的吧（作者就折腾了半天），[正面上我](https://help.github.com/articles/generating-an-ssh-key/) 。
+这个是因为的Github的SSH连接授权有问题，需要确认本地机器上的ssh公钥与Github上的私钥是匹配的。如果实在无法确认的话，就直接去换套新的吧（作者就折腾了半天），[正面上我][13] 。
 
 
 
@@ -131,6 +134,21 @@ $ hexo d
 
 
 ## 待续
-**Hexo** 总体上来说还算是个挺不错的框架的，能玩的东西很多，插件，主题等等等等，想要学习更多的可以去 [Hexo官网](https://hexo.io/zh-cn/)看看。
+**Hexo** 总体上来说还算是个挺不错的框架的，能玩的东西很多，插件，主题等等等等，想要学习更多的可以去 [Hexo官网][14]看看。
 
 完结，撒花，鼓掌～～～
+
+[1]:https://www.godaddy.com/
+[2]:https://aws.amazon.com
+[3]:https://www.aliyun.com
+[4]:https://cl.ly/022C2w20262o/commic_wow.jpg
+[5]:https://hexo.io/docs/
+[6]:https://github.com
+[7]:https://nodejs.org/en/download/package-manager/#osx
+[8]:https://git-scm.com/book/zh/v1/起步-安装-Git
+[9]:https://cl.ly/240P2i1D0b3j/hexo_1.png
+[10]:https://cl.ly/2L1R2X0e2j0U/comic_brilliant.jpg
+[11]:https://cl.ly/1o0m2K121V18/hexo_2.png
+[12]:https://cl.ly/441e3k3O1r2G/commic_yeah.jpg
+[13]:https://help.github.com/articles/generating-an-ssh-key/
+[14]:https://hexo.io/zh-cn/

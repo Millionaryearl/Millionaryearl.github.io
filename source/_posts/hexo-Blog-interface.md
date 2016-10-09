@@ -13,7 +13,7 @@ categories: "Blog"
 
 ## 更换主题
 ### 替换
-1. 在 [正面上我](https://github.com/hexojs/hexo/wiki/Themes) 寻找喜欢的主题，这里我们使用 [NEXT](http://theme-next.iissnan.com) 主题（活跃度最好，API也比较全，推荐一哈）
+1. 在 [正面上我][1] 寻找喜欢的主题，这里我们使用 [NEXT][2] 主题（活跃度最好，API也比较全，推荐一哈）
 2. 下载下来，保存到`主工程目录下 \themes `文件夹
 3. 在 `主工程目录下的_config.yml` 文件里修改 `themes` 键值
 
@@ -94,7 +94,7 @@ Scheme 是 NexT 提供的一种特性，简单点说呢就是这个主题可以�
 	
 ```
 
-5. 设置菜单项目图标. 找到**主题配置文件**`(/themes/next/_config.yml)`里`menu_icons`字段，按照如下格式加入菜单项图标名称。这里的图标名称都是由 [Font Awesome](http://fontawesome.io) 提供的,
+5. 设置菜单项目图标. 找到**主题配置文件**`(/themes/next/_config.yml)`里`menu_icons`字段，按照如下格式加入菜单项图标名称。这里的图标名称都是由 [Font Awesome][3] 提供的,
  	
  	```
     menu_option : menu_icon_name
@@ -125,4 +125,9 @@ Scheme 是 NexT 提供的一种特性，简单点说呢就是这个主题可以�
 
 欣赏一下，感悟一下，陶醉一下，然后分享给你的小伙伴们吧，一大波崇拜的目光即将到来，嘿嘿嘿。
 
-![](https://cl.ly/0k390e3v3z1v/comic_beautiful.jpg)
+![][4]
+
+[1]:https://github.com/hexojs/hexo/wiki/Themes
+[2]:http://theme-next.iissnan.com
+[3]:http://fontawesome.io
+[4]:https://cl.ly/0k390e3v3z1v/comic_beautiful.jpg

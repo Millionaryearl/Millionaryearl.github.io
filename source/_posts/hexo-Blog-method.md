@@ -11,7 +11,7 @@ categories: "Blog"
 
 ## 功能组件
 ### 评论模块
-有的theme可能带有评论，而有的没有。可选的插件有 [***DISQUS***](https://disqus.com) （更简洁偏国外） 和 [***多说***](http://duoshuo.com)（更社交偏国内）, 这里我们选用 **DISQUS**
+有的theme可能带有评论，而有的没有。可选的插件有 [***DISQUS***][1] （更简洁偏国外） 和 [***多说***][2]（更社交偏国内）, 这里我们选用 **DISQUS**
 
 1. 在**DISQUS**上注册账号
 2. 在**DISQUS**上注册一个网站,得到网站的shortname
@@ -22,7 +22,7 @@ categories: "Blog"
 disqus_shortname: shortname
 
 ```
-4. 更多评论样式设置或者相关疑问，[正面上我](http://morris821028.github.io/2014/04/12/web/hexo-comment/)
+4. 更多评论样式设置或者相关疑问，[正面上我][3]
 
 
 ### 打赏模块
@@ -73,7 +73,7 @@ alipay: https://cl.ly/3t1O403j2P1F/alipay.JPG
 ```
 
 最后记得把那两个二维码的图片地址换成你自己的，不然就算你骨骼精奇，人也是把钱汇给我了。。。当然你要真倔强不换，我也是很欢迎滴。
-![](https://cl.ly/0a0n3y3t3136/comic_spiderman.jpg)
+![][4]
 
 ### RSS开启
 
@@ -98,7 +98,7 @@ feed:
     Weibo: http://weibo.com/2334525960/profile?topnav=1&wvr=6&is_all=1
     Personal: http://dukewei.typify.io
     
-然后去给对应的连接加上图标，这个图标和上篇里菜单项目图标一样，也是由 [Font Awesome](http://fontawesome.io) 提供的
+然后去给对应的连接加上图标，这个图标和上篇里菜单项目图标一样，也是由 [Font Awesome][5] 提供的
 
     social_name: icon_name
     (e.g.)
@@ -165,4 +165,11 @@ hexo.extend.filter.register('before_post_render', function(data){
 ## 尾记
 
 至此基本上博客的功能就比较全了，其他的功能也还有很多，比如 PV啦，友链啦，搜索啦，笔者晚点会补上的。这期就先这样了，诸君，好运。
-![](https://cl.ly/1V0a2f2p0a1y/comic_dance.gif)
+![][6]
+
+[1]:https://disqus.com
+[2]:http://duoshuo.com
+[3]:http://morris821028.github.io/2014/04/12/web/hexo-comment/
+[4]:https://cl.ly/0a0n3y3t3136/comic_spiderman.jpg
+[5]:http://fontawesome.io
+[6]:https://cl.ly/1V0a2f2p0a1y/comic_dance.gif
