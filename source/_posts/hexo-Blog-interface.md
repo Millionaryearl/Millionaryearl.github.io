@@ -1,5 +1,6 @@
 ---
 title: Build Your Own Blog  - 个性化设置(一)
+date: 2016-09-11 14:29:52
 tags: Hexo
 categories: "Blog"
 ---

@@ -1,5 +1,6 @@
 ---
 title: Build Your Own Blog  - 建站并部署到Github
+date: 2016-09-04 13:35:02
 tags: Hexo
 categories: "Blog"
 ---
