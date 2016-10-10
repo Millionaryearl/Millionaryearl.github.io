@@ -79,7 +79,9 @@ categories: "Scrapy"
     	xmlfeed
 今次我们就直接使用`genspider`命令创建最基础的`basic`模版了，输入命令：
     
-    scrapy genspider biquge domain.com
+    scrapy genspider biquge www.biquge.tw
+    //formule
+    scrapy genspider -t crwal exmaple example.com
 
 这时候去到`/spiders`文件夹下，就可以看到这个名为`biquge`的爬虫文件了
 
@@ -87,9 +89,9 @@ categories: "Scrapy"
     import scrapy
     class biqugeSpider(scrapy.Spider):
     	name = "biquge"
-    	allowed_domains = ["domain.com"]
+    	allowed_domains = ["http://www.biquge.tw/"]
     	start_urls = (
-        	'http://www.domain.com/',
+        	'http://www.biquge.tw/0_972/',
     	)
 
     	def parse(self, response):

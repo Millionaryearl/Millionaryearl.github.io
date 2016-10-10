@@ -95,7 +95,7 @@
 <meta property="og:image" content="https://cl.ly/0Q2e06242H0G/comic_hah.jpg">
 <meta property="og:image" content="https://cl.ly/0G3e1B16362x/comic_puke.gif">
 <meta property="og:image" content="https://cl.ly/3E1B0x3d1Q3L/comic_disaster_girl.jpg">
-<meta property="og:updated_time" content="2016-10-08T08:38:18.000Z">
+<meta property="og:updated_time" content="2016-10-10T04:28:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Crawl Web Content - 环境搭配与基础爬虫">
 <meta name="twitter:description" content="写这篇博客呢，主要是为了响应之前打算自己搞个小说阅览App的想法。作为整个项目的一部分，我们需要自己利用爬虫工具去爬取网上的小说内容。新任务获得：制作爬虫并爬取网络内容">
@@ -387,15 +387,17 @@ class FictionItem(Item):
     csvfeed
     xmlfeed
 </code></pre><p>今次我们就直接使用<code>genspider</code>命令创建最基础的<code>basic</code>模版了，输入命令：</p>
-<pre><code>scrapy genspider biquge domain.com
+<pre><code>scrapy genspider biquge www.biquge.tw
+//formule
+scrapy genspider -t crwal exmaple example.com
 </code></pre><p>这时候去到<code>/spiders</code>文件夹下，就可以看到这个名为<code>biquge</code>的爬虫文件了</p>
 <pre><code># -*- coding: utf-8 -*-
 import scrapy
 class biqugeSpider(scrapy.Spider):
     name = &quot;biquge&quot;
-    allowed_domains = [&quot;domain.com&quot;]
+    allowed_domains = [&quot;http://www.biquge.tw/&quot;]
     start_urls = (
-        &apos;http://www.domain.com/&apos;,
+        &apos;http://www.biquge.tw/0_972/&apos;,
     )
 
     def parse(self, response):
@@ -488,10 +490,6 @@ class biqugeSpider(scrapy.Spider):
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/09/29/hexo-Blog-SEO/" rel="next" title="Build Your Own Blog  - 个性化设置(三)">
-                <i class="fa fa-chevron-left"></i> Build Your Own Blog  - 个性化设置(三)
-              </a>
             
           </div>
 
