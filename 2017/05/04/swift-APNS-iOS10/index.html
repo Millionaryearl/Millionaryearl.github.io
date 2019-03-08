@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Swift," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Chen's Alchemy" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="一晃都 iOS 都到版本10了(明明都10好久了好吧),按照苹果公司没事儿就要搞个大新闻的尿性，肯定又是一大堆的类被精炼，一大堆的方法被废弃，这不到 iOS10了，APNS就倒了霉了(UserNotifications 库 被引入以全盘接管苹果消息推送服务)，各种方法被废弃，导致了作者被测试组同事疯狂骚扰，无限报bug（什么坐着收不到通知啦，躺着也收不到啦，什么badge number不对啊。。。">
+<meta name="keywords" content="Swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift Notes - iOS10下的Client端APNS实现（基本）">
+<meta property="og:url" content="http://yoursite.com/2017/05/04/swift-APNS-iOS10/index.html">
+<meta property="og:site_name" content="Chen&#39;s Alchemy">
+<meta property="og:description" content="一晃都 iOS 都到版本10了(明明都10好久了好吧),按照苹果公司没事儿就要搞个大新闻的尿性，肯定又是一大堆的类被精炼，一大堆的方法被废弃，这不到 iOS10了，APNS就倒了霉了(UserNotifications 库 被引入以全盘接管苹果消息推送服务)，各种方法被废弃，导致了作者被测试组同事疯狂骚扰，无限报bug（什么坐着收不到通知啦，躺着也收不到啦，什么badge number不对啊。。。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://cl.ly/303L2K1N1R1N/comic-gogogo.png">
+<meta property="og:image" content="https://cl.ly/3g19313C0L0k/comic-dance.gif">
+<meta property="og:updated_time" content="2018-05-23T15:23:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift Notes - iOS10下的Client端APNS实现（基本）">
+<meta name="twitter:description" content="一晃都 iOS 都到版本10了(明明都10好久了好吧),按照苹果公司没事儿就要搞个大新闻的尿性，肯定又是一大堆的类被精炼，一大堆的方法被废弃，这不到 iOS10了，APNS就倒了霉了(UserNotifications 库 被引入以全盘接管苹果消息推送服务)，各种方法被废弃，导致了作者被测试组同事疯狂骚扰，无限报bug（什么坐着收不到通知啦，躺着也收不到啦，什么badge number不对啊。。。">
+<meta name="twitter:image" content="https://cl.ly/303L2K1N1R1N/comic-gogogo.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/04/swift-APNS-iOS10/"/>
+
+
+
+
+
+  <title>Swift Notes - iOS10下的Client端APNS实现（基本） | Chen's Alchemy</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chen's Alchemy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">iOS Notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/04/swift-APNS-iOS10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chen Wei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chen's Alchemy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift Notes - iOS10下的Client端APNS实现（基本）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-04T12:01:30+08:00">
+                2017-05-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/APNS/" itemprop="url" rel="index">
+                    <span itemprop="name">APNS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/04/swift-APNS-iOS10/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/05/04/swift-APNS-iOS10/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一晃都 <code>iOS</code> 都到版本10了(明明都10好久了好吧),按照苹果公司没事儿就要搞个大新闻的尿性，肯定又是一大堆的类被精炼，一大堆的方法被废弃，这不到 <code>iOS10</code>了，APNS就倒了霉了(<strong>UserNotifications 库</strong> 被引入以全盘接管苹果消息推送服务)，各种方法被废弃，导致了作者被测试组同事疯狂骚扰，无限报bug（什么坐着收不到通知啦，躺着也收不到啦，什么badge number不对啊。。。）。 于是作者就给掰扯掰扯，就当抛砖了。<br><strong><em>新任务获得：升级APNS前端代码以支持全版本下的消息推送需求</em></strong></p>
+<a id="more"></a>
+<h2 id="消息推送需求肢解"><a href="#消息推送需求肢解" class="headerlink" title="消息推送需求肢解"></a>消息推送需求肢解</h2><p>呐，基础的 <code>APNS</code> 组成部件和流程你们肯定都懂，不懂得就随便去网上找下吧解说的不要太多；然后那些证书啊，APP Key啊的配置估计你们也都知道，不知道的可以看下我写的第一篇博客里除了前端代码的那一部分<a href="https://millionaryearl.github.io/2016/09/01/swift-APNS-aliyun/" target="_blank" rel="noopener">Swift Notes - 阿里云推送SDK配置</a>，当然如果你选用的是其他服务器比如极光，百度之类的，也可以凑合看下，毕竟只是sdk换了下。</p>
+<p>那回到前端，我们要的活儿有哪些呢</p>
+<ol>
+<li>先是注册设备 – （把 <code>deviceId</code> 发送给<code>推送服务器</code>，得到 <code>push token</code>作为设备标识以供<code>苹果通知服务器</code>定向推送消息）</li>
+<li>注册请求成功/失败的处理 – （没啥大用，就是成功了么就把 <code>push token</code> 打出来看下，失败了么就把错误信息打出来看看原因）</li>
+<li><p>那注册完了么自然就是收到通知后的处理了 – （这里我们仅处理标准通知，威力加强版的我们到时候再说，可能下期吧）</p>
+<p>那明确了需求细节之后么，我就开始吧<br><img src="https://cl.ly/303L2K1N1R1N/comic-gogogo.png" alt="2"></p>
+</li>
+</ol>
+<h2 id="注册设备"><a href="#注册设备" class="headerlink" title="注册设备"></a>注册设备</h2><p>如上所诉，这里的注册有两部，一步启动<code>推送SDK</code>完成初始化；另一步与<code>苹果通知服务器</code>交互完成初始化</p>
+<h3 id="与推送SDK初始"><a href="#与推送SDK初始" class="headerlink" title="与推送SDK初始"></a>与<code>推送SDK</code>初始</h3><p>这个还是和跳的推送服务器有关的，毕竟每家的接口不一样么，详细的和推送服务器初始化交互的接口怎么用，各家SDK肯定都有教程的，这个需要看官们找一下，我这就以<code>阿里云</code>的为例了</p>
+<pre><code>// init Aliyun Push SDK
+func initCloudPushSDK() {
+    CloudPushSDK.asyncInit(testAppKey, appSecret: testAppSecret) { (res) in
+        if (res!.success) {
+            print(&quot;Push SDK init success, deviceId: \(CloudPushSDK.getDeviceId()!)&quot;)
+        } else {
+            print(&quot;Push SDK init failed, error: \(res!.error!).&quot;)
+        }
+    }
+}
+</code></pre><h3 id="与苹果通知服务器交互"><a href="#与苹果通知服务器交互" class="headerlink" title="与苹果通知服务器交互"></a>与<code>苹果通知服务器</code>交互</h3><p>那原本的注册代码只要针对 <code>iOS8</code>以下和<code>iOS8</code>以上，写两套代码的(<code>iOS8</code>时苹果公司也搞了个大新闻)，那现在引入了 <code>UserNotifications Framework</code>, 我们需要现在<code>AppDelegate</code>文件里引入这个库文件</p>
+<pre><code>import UIKit
+// iOS 10+ notificaiton
+import UserNotifications
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+</code></pre><p>然后把<code>iOS8</code>以上版本代码进一步分化为<code>iOS8-10</code>之间和<code>iOS10</code>以上两套代码，总计三套代码如下：</p>
+<pre><code>// Register APNS, fetch deviceToen for pushing notifications
+func registerAPNs(_ application: UIApplication) {
+    if #available(iOS 10, *) {
+        // iOS 10+
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
+        // request User authorization
+        center.requestAuthorization(options: [.alert, .badge, .sound], completionHandler: { (granted, error) in
+            if (granted) {
+                // User authored notification
+                print(&quot;User authored notification.&quot;)
+                // Real register to APNS, after user does authorize
+                application.registerForRemoteNotifications()
+            } else {
+                // User denied notification
+                print(&quot;User denied notification.&quot;)
+            }
+        })
+    } else if #available(iOS 8, *) {
+        // iOS 8+
+        application.registerUserNotificationSettings(UIUserNotificationSettings.init(types: [.alert, .badge, .sound], categories: nil))
+        application.registerForRemoteNotifications()
+    } else {
+        // &lt; iOS 8
+        application.registerForRemoteNotifications(matching: [.alert,.badge,.sound])
+    }
+}
+</code></pre><h2 id="注册设备成功／失败回调"><a href="#注册设备成功／失败回调" class="headerlink" title="注册设备成功／失败回调"></a>注册设备成功／失败回调</h2><p>呃，这块貌似没啥好说的了，直接上代码吧</p>
+<pre><code>//APNS register success
+func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    CloudPushSDK.registerDevice(deviceToken as Data!) { (res) in
+        if (res?.success)!{
+            print(&quot;Register deviceToken success&quot;)
+            print(&quot;token\(CloudPushSDK.getApnsDeviceToken())&quot;)
+        }else{
+            print(&quot;Register deviceToken failed, error:\(res?.error?.localizedDescription)&quot;)
+        }
+    }
+}
+
+//APNS register failed
+func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+    print(&quot;did fail to register for remote notification with error : \(error.localizedDescription)&quot;)
+}
+</code></pre><h2 id="处理收到的通知"><a href="#处理收到的通知" class="headerlink" title="处理收到的通知"></a>处理收到的通知</h2><p>根据前端app所处的状态，我们需要处理三种状态下的通知：<code>Foreground mode</code> <code>Background mode</code> <code>Inactive mode</code></p>
+<h3 id="Foreground-Mode"><a href="#Foreground-Mode" class="headerlink" title="Foreground Mode"></a>Foreground Mode</h3><p>这种模式是app正在前端运行中的状态，设备顶部不会有通知栏出现，所以不会有通知栏手势响应的情况，更多的时候我们是以此触发一些内部逻辑（动画啊，页面跳转什么的），那在<code>iOS10</code>以前，是如下处理的：<br><strong><em>注：即便app处于前台，iOS10以后，通知栏也会出现，手势响应同Background Mode(第二段代码)</em></strong></p>
+<pre><code>    //Handle remote Notifications - Foreground Mode (iOS &lt; 10)
+func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+    print(&quot;REceive one notification.&quot;)
+    if application.applicationState == UIApplicationState.active{
+
+        ...Your logic...
+        ...Foreground Mode...
+
+    }
+}
+</code></pre><p>如上所说，<code>iOS10</code>引入了<code>UserNotification Framework</code>，自然这个新的库会提供新的方法咯，如下：</p>
+<pre><code>//Handle remote Notifications - Foreground Mode (iOS 10+)
+@available(iOS 10.0, *)
+func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -&gt; Void) {
+    print(&quot;Receive a notification in foreground.&quot;)
+
+    ...Your logic...
+    ...Foreground Mode...
+
+    // hide alert
+    completionHandler([])
+    // show alert with popup,badge,sound
+    //completionHandler([.alert, .badge, .sound])
+}
+</code></pre><h3 id="Background-Mode"><a href="#Background-Mode" class="headerlink" title="Background Mode"></a>Background Mode</h3><p>那这种模式是app依然在运行，只不过是在后台挂起的状态，应该是通知推送最常遇到的场景了，会有顶部弹出，以及通知栏手势响应. 这种模式下的响应函数与<code>Foreground Mode</code>的一样，只不过通过<code>application.status</code>属性进行区分。在<code>iOS10</code>以前，是如下处理的：</p>
+<pre><code>//Handle remote Notifications - Foreground Mode (iOS &lt; 10)
+func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+    print(&quot;REceive one notification.&quot;)
+    if application.applicationState == UIApplicationState.active{
+
+        ...Your logic...
+        ...Foreground Mode...
+
+    }else{
+
+        ...Your logic...
+        ...Background Mode...
+
+    }
+}
+</code></pre><p>但<code>iOS10 UserNotifications Framework</code> 被引入以后，上面的代码就瞎了。。。不会被调用，也没有新的替换方法(作者就是个废物啊，确实没研究出来，有知道的看官请告诉我). 但实际上问题也不大啦，毕竟<code>Background Mode</code>下你也没有太多的内部逻辑可动，而且具体的通知手势响应回调函数，<code>UserNotifications Framework</code> 还是厚道的提供了的，如下：</p>
+<pre><code>// Handle remote Notifications action(Click/Delete/Self-defined actions) 
+//- Foreground &amp; Background Mode (iOS 10+)
+@available(iOS 10, *)
+func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -&gt; Void) {
+
+    if UIApplication.shared.applicationState.applicationState == UIApplicationState.active{
+
+        ...Your logic...
+        ...Foreground Mode...
+
+    }else{
+
+        let userAction = response.actionIdentifier
+        if userAction == UNNotificationDefaultActionIdentifier {
+        print(&quot;User opened the notification.&quot;)
+
+            ...Your logic...
+            ...Background Mode...
+
+          }
+         if userAction == UNNotificationDismissActionIdentifier {
+            print(&quot;User dismissed the notification.&quot;)
+        }  
+    }        
+    completionHandler()
+}
+</code></pre><h3 id="Inactive-Mode"><a href="#Inactive-Mode" class="headerlink" title="Inactive Mode"></a>Inactive Mode</h3><p>这种模式是app已经被杀掉的状态（挂起过长被动杀掉，手动杀掉），会有顶部通知栏，有通知手势响应。与<code>Foreground Mode</code>和<code>Background Mode</code>不同的是，这种模式走的<code>application: didFinishLaunchingWithOptions</code>方法，而且<code>所有的iOS版本</code>都只有一套代码如下：</p>
+<pre><code>//Handle remote Notifications
+//- Inactive Mode (iOS all version)
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -&gt; Bool {
+    if launchOptions != nil {
+        let option = launchOptions![UIApplicationLaunchOptionsKey.remoteNotification] as? NSDictionary
+        if option != nil {
+
+           ...Your logic...
+           ...Inactive Mode...
+
+        }
+    }
+}
+</code></pre><h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><h3 id="角标的问题"><a href="#角标的问题" class="headerlink" title="角标的问题"></a>角标的问题</h3><p>大多数时候呢，通知的角标数量都是由后台通过<code>通知内容(Notification Payload)</code>里的<code>Badge</code>字段配置的，前端只是由系统自动的简单的响应下。当然你也可以在适当的地方通过如下代码手动管理：</p>
+<pre><code>UIApplication.shared.applicationIconBadgeNumber = 99
+</code></pre><p>这里有的看客可能会问了，那app在<code>Inactive Mode</code>甚至<code>Background Mode</code>下基本无发运行代码，怎么会更新角标(包括播放音乐)？这里同样要求你后端的同事通过将<code>通知内容(Notification Payload)</code>里的<code>Content-avaiable</code>字段配置为<code>1</code>，这样设备就会在收到通知时短暂运行一下app，以实现更新。</p>
+<h3 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h3><p>前文有提过新版本下的通知可以玩的花活儿越来越多了，主要有如下两支，至于具体怎么使用呢，我们下回再说（让作者先研究研究）</p>
+<ul>
+<li>自定义通知行为(Actionable Notification)</li>
+<li>通知拓展(Notification Extension)</li>
+</ul>
+<p><img src="https://cl.ly/3g19313C0L0k/comic-dance.gif" alt="3"></p>
+<hr>
+<p>This artical is avaliable under WTFPL-V2. Generally, everyone is permitted to copy and do what the fuck you want to.<br>P.S. Even so said, your kindly declaration that inspired from this site - Chen’s Alchemy would be appreciated</p>
+<p>本文链接：<a href="http://yoursite.com/2017/05/04/swift-APNS-iOS10/">http://yoursite.com/2017/05/04/swift-APNS-iOS10/</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate comment here</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Chen Wei 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Chen Wei 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/28/hexo-Blog-SEO2/" rel="next" title="Build Your Own Blog - 被搜索引擎搜索到(Baidu)">
+                <i class="fa fa-chevron-left"></i> Build Your Own Blog - 被搜索引擎搜索到(Baidu)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/08/python-Scrapy-parser-addon/" rel="prev" title="Crawl Web Content - 详解爬虫特殊场景语法">
+                Crawl Web Content - 详解爬虫特殊场景语法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="Chen Wei" />
+            
+              <p class="site-author-name" itemprop="name">Chen Wei</p>
+              <p class="site-description motion-element" itemprop="description">iOS Engineer, now dog-paddling at Shanghai</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Millionaryearl" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://weibo.com/2334525960/profile?topnav=1&wvr=6&is_all=1" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://dukewei.typify.io" target="_blank" title="Personal">
+                      
+                        <i class="fa fa-fw fa-address-card"></i>Personal</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:dukeweichen.ios@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#消息推送需求肢解"><span class="nav-number">1.</span> <span class="nav-text">消息推送需求肢解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注册设备"><span class="nav-number">2.</span> <span class="nav-text">注册设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#与推送SDK初始"><span class="nav-number">2.1.</span> <span class="nav-text">与推送SDK初始</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与苹果通知服务器交互"><span class="nav-number">2.2.</span> <span class="nav-text">与苹果通知服务器交互</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注册设备成功／失败回调"><span class="nav-number">3.</span> <span class="nav-text">注册设备成功／失败回调</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理收到的通知"><span class="nav-number">4.</span> <span class="nav-text">处理收到的通知</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Foreground-Mode"><span class="nav-number">4.1.</span> <span class="nav-text">Foreground Mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Background-Mode"><span class="nav-number">4.2.</span> <span class="nav-text">Background Mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inactive-Mode"><span class="nav-number">4.3.</span> <span class="nav-text">Inactive Mode</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">5.</span> <span class="nav-text">注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#角标的问题"><span class="nav-number">5.1.</span> <span class="nav-text">角标的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拓展"><span class="nav-number">5.2.</span> <span class="nav-text">拓展</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chen Wei</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom">Bear the name of My SXXT Life.</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://millionaryearl.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/05/04/swift-APNS-iOS10/';
+          this.page.identifier = '2017/05/04/swift-APNS-iOS10/';
+          this.page.title = 'Swift Notes - iOS10下的Client端APNS实现（基本）';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://millionaryearl.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/particle.js"></script>
+</body>
+</html>
